@@ -11,7 +11,7 @@ export const Home = () => {
             <input type="text" placeholder='Поиск' className='home__search'/>
             <NavLink to="/product/id" className='home__btn_link'>
               <button className='home__btn'>
-                Айма ратлин 60мм 12гр
+                Айма ратлин
               </button>
             </NavLink>
           </div>

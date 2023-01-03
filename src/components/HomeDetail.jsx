@@ -7,7 +7,13 @@ export const HomeDetail = () => {
 			<div className="container">
 				<div className="detail__wrapper">
 					<form className='detail_form'>
-						<label>Айма ратлин 60мм 12гр</label>
+						<label>Айма ратлин</label>
+						<select className="home_detail__select">
+							<option value="">Выберите вид...</option>
+							<option value="">60мм 12гр</option>
+							<option value="">75мм 15гр</option>
+							<option value="">95мм 35гр</option>
+						</select>
 						<input type='text' placeholder='Введите количество'/>
 
 					</form>

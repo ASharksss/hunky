@@ -16,16 +16,19 @@ export const Stock = () => {
             <thead>
             <tr>
               <th>Продукт</th>
+              <th>Тип</th>
               <th>Количество</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td data-label="Продукт">Айма ратлин 60мм 12гр</td>
+              <td data-label="Продукт">Айма ратлин</td>
+              <td data-label="Продукт">60мм 12гр</td>
               <td data-label="Количество">132</td>
             </tr>
             <tr>
-              <td data-label="Продукт">Багет 60м 17гр</td>
+              <td data-label="Продукт">Багет</td>
+              <td data-label="Продукт"> 60м 17гр</td>
               <td data-label="Количество">2</td>
             </tr>
             </tbody>

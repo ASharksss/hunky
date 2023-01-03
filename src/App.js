@@ -9,6 +9,9 @@ import {Review} from "./components/Review";
 import {DefectDetail} from "./components/defectDetail";
 import {CancelDetail} from "./components/cancelDetail";
 import {Salary} from "./components/Salary";
+import {AdminLayout} from "./components/admin/AdminLayout";
+import {AdminUsers} from "./components/admin/AdminUsers";
+import {AdminStock} from "./components/admin/AdminStock";
 
 
 function App() {
@@ -26,6 +29,10 @@ function App() {
             <Route path='/profile/defect' element={<DefectDetail/>}/>
             <Route path='/profile/cancel' element={<CancelDetail/>}/>
             <Route path='/profile/salary' element={<Salary/>}/>
+          </Route>
+          <Route path='/admin' element={<AdminLayout/>}>
+            <Route path='/admin' element={<AdminUsers/>}/>
+            <Route path='/admin/stock' element={<AdminStock/>}/>
           </Route>
         </Routes>
       </div>
