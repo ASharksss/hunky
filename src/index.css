@@ -23,7 +23,67 @@ body {
 }
 
 
-/* HEADER */
+.auth_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    margin: 100px auto;
+
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+
+.auth_container h1{
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.auth_container button{
+
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    border:none;
+    cursor: pointer;
+    background-color: #506783;
+    color: #e7e6e6;
+    font-weight: bold;
+}
+
+.auth_link{
+    margin-top: 20px;
+    width: 100%;
+}
+
+.auth_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 250px;
+}
+
+@media (max-width: 600px){
+
+    .auth_container{
+        width: 90%;
+    }
+}
+
+.auth_form input{
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+
+    /* HEADER */
 .header {
     background-color: #3e5873;
     width: 100%;
@@ -271,7 +331,7 @@ body {
 }
 
 .detail_form input {
-    margin: 0;
+    margin-bottom: 7px;
     width: 100%;
     height: 30px;
     padding: 7px;
@@ -746,11 +806,14 @@ td {
 
 /* ADMIN */
 
-.users_container{
+
+/* ADMIN_USERS */
+
+.users_container {
     margin-bottom: 100px;
 }
 
-.admin_user_title{
+.admin_user_title {
     margin-top: 40px;
 }
 
@@ -762,6 +825,7 @@ td {
     border: none;
     background-color: #eeeeee;
 }
+
 .user_btn:hover {
     background-color: #cbcaca;
 }
@@ -775,7 +839,7 @@ td {
     }
 }
 
-.add_user{
+.add_user {
     width: 250px;
     height: 40px;
     text-align: center;
@@ -791,31 +855,125 @@ td {
     background-color: #cbcaca;
 }
 
-.admin_stock_container{
+.users_resume + .users_resume {
+    margin-left: 10px;
+}
+
+.user_detail_container {
+    margin-bottom: 100px;
+}
+
+.user_detail_block {
+    margin-bottom: 30px;
+}
+
+.adminReview_container {
+    margin-bottom: 100px;
+}
+
+.adminReview_container h1 {
+    margin-left: 8%;
+}
+
+.review_block {
+    width: 80%;
+    background-color: #f0efef;
+    padding: 15px;
+    margin: 10px auto;
+}
+
+.review_block p {
+    margin-left: 10px;
+}
+
+
+/* ADMIN_ADD_USERS */
+
+.add_user_form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 90px auto;
+}
+
+.add_user_input {
+    width: 70%;
+    height: 25px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.add_user_select {
+    width: 71%;
+    height: 30px;
+    font-size: 14px;
+}
+
+.add_user_submit {
+    width: 200px;
+    height: 30px;
+    cursor: pointer;
+    border: none;
+    background-color: #506783;
+    color: #e7e6e6;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.add_user_submit:hover {
+    background-color: #3e5873;
+}
+
+.add_user_link {
+    align-self: self-end;
+    margin-right: 15%;
+}
+
+
+/* END ADMIN_ADD_USERS */
+
+/* END ADMIN_USERS */
+
+
+/* ADMIN_STOCK */
+.admin_stock_container {
     margin-bottom: 100px;
     margin-right: auto;
     margin-left: auto;
     width: 80%;
 }
 
+.add_user_title {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
 
-.admin_stock_select{
+@media (max-width: 600px) {
+    .add_user_title {
+        font-size: 22px;
+        margin-bottom: 30px;
+    }
+}
+
+.admin_stock_select {
     width: 100%;
     height: 30px;
-    margin-top:50px;
+    margin-top: 50px;
     font-size: 16px;
 }
-.stock_block{
+
+.stock_block {
     margin: 30px auto;
 }
 
-.stock_title{
+.stock_title {
     display: flex;
     align-items: center;
 }
 
 
-.stock_btn{
+.stock_btn {
     width: 120px;
     height: 30px;
     margin-left: 10px;
@@ -828,4 +986,63 @@ td {
 .stock_btn:hover {
     background-color: #cbcaca;
 }
+
+/* ADMIN_STOCK_RESUME */
+
+.resume_form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+    margin: 100px auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+@media (max-width: 600px) {
+    .resume_form {
+        width: 90%;
+    }
+}
+
+.resume_stock_title {
+    font-size: 28px;
+}
+
+@media (max-width: 768px) {
+    .resume_stock_title {
+        font-size: 20px;
+    }
+}
+
+.resume_input {
+    width: 80%;
+    height: 30px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.resume_stock_submit {
+    width: 200px;
+    height: 30px;
+    background-color: #506783;
+    color: #e7e6e6;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.resume_stock_submit:hover {
+    background-color: #263949;
+}
+
+.resume_stock_link {
+    align-self: self-end;
+    margin-right: 10%;
+}
+
+/* END ADMIN_STOCK */
+
+
 /* END ADMIN */

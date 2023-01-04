@@ -14,7 +14,8 @@ export const HomeDetail = () => {
 							<option value="">75мм 15гр</option>
 							<option value="">95мм 35гр</option>
 						</select>
-						<input type='text' placeholder='Введите количество'/>
+						<input type='text' placeholder='Количество сделано'/>
+						<input type='text' placeholder='Количество брак'/>
 
 					</form>
 					<div className="detail_btns">

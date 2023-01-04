@@ -7,56 +7,68 @@ export const AdminUsers = () => {
 			<div className="container">
 				<div className="users_container">
 					<h1 className='admin_user_title'>Пользователи</h1>
-					<button className='add_user'>
-						Добавить пользователя
-					</button>
+					<NavLink to='add' className='users_resume' >
+						<button className='add_user'>
+							Добавить пользователя
+						</button>
+					</NavLink>
+					<NavLink to='review' className='users_resume'>
+						<button className='add_user'>
+							Отзывы и предложения
+						</button>
+					</NavLink>
 					<div className="history__table">
 						<table>
 							<thead>
 							<tr>
 								<th>Пользователь</th>
+								<th>Логин</th>
+								<th>Пароль</th>
 								<th>Деятельность</th>
-								<th>Сводка за сегодня</th>
 								<th>Кнопки</th>
 							</tr>
 							</thead>
 							<tbody>
 							<tr>
 								<td data-label="Пользователь">Алексей</td>
-								<td data-label="Деятельность">Создание форм и грузов</td>
-								<td data-label="Сводка за сегодня">100</td>
+								<td data-label="Логин">Alexey</td>
+								<td data-label="Пароль">alexey12345</td>
+								<td data-label="Деятельность">Формирование</td>
 								<td data-label="Кнопки">
-									<NavLink to='admin/users/detail'>
+									<NavLink to='detail'>
 										<button className='user_btn'>Подробнее</button>
 									</NavLink>
 								</td>
 							</tr>
 							<tr>
 								<td data-label="Пользователь">Татьяна</td>
-								<td data-label="Деятельность">Покраска изделий</td>
-								<td data-label="Дата добавления">100</td>
+								<td data-label="Логин">Tatyana</td>
+								<td data-label="Пароль">tatyana12346</td>
+								<td data-label="Деятельность">Покраска</td>
 								<td data-label="Кнопки">
-									<NavLink to='admin/users/detail'>
+									<NavLink to='detail'>
 										<button className='user_btn'>Подробнее</button>
 									</NavLink>
 								</td>
 							</tr>
 							<tr>
 								<td data-label="Пользователь">Вадим</td>
-								<td data-label="Деятельность">Покраска изделий</td>
-								<td data-label="Дата добавления">100</td>
+								<td data-label="Логин">Vadim</td>
+								<td data-label="Пароль">vadim123</td>
+								<td data-label="Деятельность">Покраска</td>
 								<td data-label="Кнопки">
-									<NavLink to='admin/users/detail'>
+									<NavLink to='detail'>
 										<button className='user_btn'>Подробнее</button>
 									</NavLink>
 								</td>
 							</tr>
 							<tr>
 								<td data-label="Пользователь">Александр</td>
-								<td data-label="Деятельность">Сборка изделий</td>
-								<td data-label="Дата добавления">100</td>
+								<td data-label="Логин">alexander</td>
+								<td data-label="Пароль">Alex777</td>
+								<td data-label="Деятельность">Сборка</td>
 								<td data-label="Кнопки">
-									<NavLink to='admin/users/detail'>
+									<NavLink to='detail'>
 										<button className='user_btn'>Подробнее</button>
 									</NavLink>
 								</td>

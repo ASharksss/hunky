@@ -26,20 +26,23 @@ export const DefectDetail = () => {
 							<thead>
 							<tr>
 								<th>Продукт</th>
-								<th>Количество</th>
+								<th>Тип</th>
+								<th>Брак</th>
 								<th>Дата добавления</th>
 							</tr>
 							</thead>
 							<tbody>
 							<tr>
-								<td data-label="Продукт">Айма ратлин 60мм 12гр</td>
-								<td data-label="Количество">2</td>
+								<td data-label="Продукт">Айма ратлин</td>
+								<td data-label="Тип">60мм 12гр</td>
+								<td data-label="Брак">2</td>
 								<td data-label="Дата добавления">28/12/22</td>
 							</tr>
 							<tr>
-								<td data-label="Продукт">Айма ратлин 60мм 12гр</td>
-								<td data-label="Количество">2</td>
-								<td data-label="Дата добавления">29/12/22</td>
+								<td data-label="Продукт">Айма ратлин</td>
+								<td data-label="Тип">60мм 12гр</td>
+								<td data-label="Брак">2</td>
+								<td data-label="Дата добавления">28/12/22</td>
 							</tr>
 							</tbody>
 						</table>

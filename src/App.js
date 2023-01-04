@@ -12,6 +12,11 @@ import {Salary} from "./components/Salary";
 import {AdminLayout} from "./components/admin/AdminLayout";
 import {AdminUsers} from "./components/admin/AdminUsers";
 import {AdminStock} from "./components/admin/AdminStock";
+import {StockResume} from "./components/admin/StockResume";
+import {AddUser} from "./components/admin/addUser";
+import {UsersDetail} from "./components/admin/UsersDetail";
+import {AdminReview} from "./components/admin/AdminReview";
+import {Auth} from "./components/Auth";
 
 
 function App() {
@@ -19,6 +24,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
+          <Route path='/auth' element={<Auth/>} />
           <Route path='/' element={<Layout/>}>
             <Route path='/' element={<Home/>}/>
             <Route path='/product/id' element={<HomeDetail/>}/>
@@ -31,8 +37,13 @@ function App() {
             <Route path='/profile/salary' element={<Salary/>}/>
           </Route>
           <Route path='/admin' element={<AdminLayout/>}>
-            <Route path='/admin' element={<AdminUsers/>}/>
+            <Route path='/admin/users' element={<AdminUsers/>}/>
+            <Route path='/admin/users/detail' element={<UsersDetail/>}/>
+            <Route path='/admin/users/add' element={<AddUser/>}/>
+            <Route path='/admin/users/review' element={<AdminReview/>}/>
             <Route path='/admin/stock' element={<AdminStock/>}/>
+            <Route path='/admin/stock/resume' element={<StockResume/>}/>
+
           </Route>
         </Routes>
       </div>

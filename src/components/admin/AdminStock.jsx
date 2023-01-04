@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
 
 export const AdminStock = () => {
 	return (
@@ -15,7 +16,10 @@ export const AdminStock = () => {
 					<div className="stock_block">
 						<div className="stock_title">
 							<h1>Расходники</h1>
-							<button className='stock_btn'>Пополнить</button>
+							<NavLink to='/admin/stock/resume' className='link'>
+								<button className='stock_btn'>Пополнить</button>
+							</NavLink>
+
 						</div>
 
 						<div className="stock_list">

@@ -17,7 +17,7 @@ export const AdminFooter = () => {
               <p>Склад</p>
             </button>
           </NavLink>
-          <NavLink to='/admin' className='home__btn_link'>
+          <NavLink to='/admin/users' className='home__btn_link'>
             <button className='footer__button'>
               <CiFaceSmile className='footer_icon' size={35}/>
               <p>Пользователи</p>
