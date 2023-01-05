@@ -1,12 +1,21 @@
 import React from 'react';
-import { CiBoxList } from 'react-icons/ci'
-import {CiHome} from "react-icons/ci";
-import {CiUndo} from "react-icons/ci";
-import {CiFaceSmile} from "react-icons/ci";
-import {CiAlignBottom} from "react-icons/ci";
+import {useDispatch} from "react-redux";
+import { redirect } from 'react-router-dom'
+import {CiFaceSmile, CiAlignBottom, CiHome, CiBoxList, CiLogout} from "react-icons/ci";
 import {NavLink} from "react-router-dom";
+import {requestLogout} from "../../actions/auth";
 
 export const AdminFooter = () => {
+  const dispatch = useDispatch()
+
+  const handleLogout = () => {
+    dispatch(requestLogout())
+    // const logout = dispatch(requestLogout())
+    // if (!logout) {
+    //   return redirect("/");
+    // }
+  };
+
   return (
     <div className='footer'>
       <div className="container">
@@ -20,7 +29,7 @@ export const AdminFooter = () => {
           <NavLink to='/admin/users' className='home__btn_link'>
             <button className='footer__button'>
               <CiFaceSmile className='footer_icon' size={35}/>
-              <p>Пользователи</p>
+                <p>Пользователи</p>
             </button>
           </NavLink>
           <NavLink to='/admin/products' className='home__btn_link'>
@@ -33,6 +42,12 @@ export const AdminFooter = () => {
             <button className='footer__button'>
               <CiAlignBottom className='footer_icon' size={35}/>
               <p>Аналитика</p>
+            </button>
+          </NavLink>
+          <NavLink to={'/logout'} className='home__btn_link' onClick={() => handleLogout()}>
+            <button className='footer__button'>
+              <CiLogout className='footer_icon' size={35}/>
+              <p>Выход</p>
             </button>
           </NavLink>
 

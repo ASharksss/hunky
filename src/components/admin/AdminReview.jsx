@@ -1,7 +1,13 @@
-import React from 'react';
-import {NavLink} from "react-router-dom";
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {requestFeedbackList} from "../../actions/other";
 
 export const AdminReview = () => {
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(requestFeedbackList())
+	}, [])
+	const data = useSelector(state => state.other.data)
 	return (
 		<div className='adminReview'>
 			<div className="container">
@@ -12,16 +18,15 @@ export const AdminReview = () => {
 						<p>04.01.22</p>
 						<p>Поднять зарплату программисту</p>
 					</div>
-					<div className="review_block">
-						<p>Аноним</p>
-						<p>04.01.22</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid autem culpa esse et expedita impedit ipsam laboriosam modi nisi nostrum nulla officia omnis, porro quibusdam quo soluta voluptas voluptate.</p>
-					</div>
-					<div className="review_block">
-						<p>Аноним</p>
-						<p>04.01.22</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid autem culpa esse et expedita impedit ipsam laboriosam modi nisi nostrum nulla officia omnis, porro quibusdam quo soluta voluptas voluptate.</p>
-					</div>
+					{data.map(item => {
+						return (
+							<div className="review_block">
+								<p>{item.user}</p>
+								<p>{item.date}</p>
+								<p>{item.text}</p>
+							</div>
+						)
+					})}
 				</div>
 			</div>
 		</div>

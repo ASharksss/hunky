@@ -1,7 +1,14 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {requestUserList} from "../../actions/user";
 
 export const AdminUsers = () => {
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(requestUserList())
+	}, [])
+	const user = useSelector(state => state.user.data)
 	return (
 		<div className='admin_users'>
 			<div className="container">
@@ -23,56 +30,27 @@ export const AdminUsers = () => {
 							<tr>
 								<th>Пользователь</th>
 								<th>Логин</th>
-								<th>Пароль</th>
-								<th>Деятельность</th>
+								<th>Должность</th>
+								<th>Права</th>
 								<th>Кнопки</th>
 							</tr>
 							</thead>
 							<tbody>
-							<tr>
-								<td data-label="Пользователь">Алексей</td>
-								<td data-label="Логин">Alexey</td>
-								<td data-label="Пароль">alexey12345</td>
-								<td data-label="Деятельность">Формирование</td>
-								<td data-label="Кнопки">
-									<NavLink to='detail'>
-										<button className='user_btn'>Подробнее</button>
-									</NavLink>
-								</td>
-							</tr>
-							<tr>
-								<td data-label="Пользователь">Татьяна</td>
-								<td data-label="Логин">Tatyana</td>
-								<td data-label="Пароль">tatyana12346</td>
-								<td data-label="Деятельность">Покраска</td>
-								<td data-label="Кнопки">
-									<NavLink to='detail'>
-										<button className='user_btn'>Подробнее</button>
-									</NavLink>
-								</td>
-							</tr>
-							<tr>
-								<td data-label="Пользователь">Вадим</td>
-								<td data-label="Логин">Vadim</td>
-								<td data-label="Пароль">vadim123</td>
-								<td data-label="Деятельность">Покраска</td>
-								<td data-label="Кнопки">
-									<NavLink to='detail'>
-										<button className='user_btn'>Подробнее</button>
-									</NavLink>
-								</td>
-							</tr>
-							<tr>
-								<td data-label="Пользователь">Александр</td>
-								<td data-label="Логин">alexander</td>
-								<td data-label="Пароль">Alex777</td>
-								<td data-label="Деятельность">Сборка</td>
-								<td data-label="Кнопки">
-									<NavLink to='detail'>
-										<button className='user_btn'>Подробнее</button>
-									</NavLink>
-								</td>
-							</tr>
+							{user.map(item => {
+								return (
+									<tr key={item.id}>
+										<td data-label="Пользователь">{item.name}</td>
+										<td data-label="Логин">{item.username}</td>
+										<td data-label="Пароль">{item.job_title}</td>
+										<td data-label="Деятельность">{item.role}</td>
+										<td data-label="Кнопки">
+											<NavLink to={'/admin/user/detail/' + item.id}>
+												<button className='user_btn'>Подробнее</button>
+											</NavLink>
+										</td>
+									</tr>
+								)
+							})}
 							</tbody>
 						</table>
 					</div>
