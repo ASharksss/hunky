@@ -6,7 +6,8 @@ const initialState = {
 	error: '',
 	token: '',
 	role: '',
-	isAuth: false
+	isAuth: false,
+	user: {}
 }
 
 export default function authReduce(state = initialState, action) {
@@ -24,6 +25,7 @@ export default function authReduce(state = initialState, action) {
 				error: '',
 				token: action.payload.token,
 				role: action.payload.role,
+				user: {"name": action.payload.name, "job_title": action.payload.job_title},
 				isAuth: true
 			}
 		case LOGOUT:

@@ -17,7 +17,9 @@ export const requestLogin = (username, password) => {
                     if (response.data.server_status == 1) {
                         const data = {
                             token: response.data.token,
-                            role: response.data.role
+                            role: response.data.role,
+                            name: response.data.user.name,
+                            job_title: response.data.user.job_title
                         }
                         dispatch(success(data))
                         axios.defaults.headers.common = {'Authorization': `Bearer ${response.data.token}`}

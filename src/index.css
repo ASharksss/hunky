@@ -473,6 +473,10 @@ td {
 
 
 /* PROFILE */
+.profile{
+    margin-bottom: 100px;
+}
+
 .profile__wrapper {
     width: 800px;
     margin: 0 auto;

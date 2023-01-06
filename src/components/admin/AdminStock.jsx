@@ -1,126 +1,142 @@
-import React from 'react';
-import {NavLink} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from "react-router-dom";
+import { requestHistory } from '../../actions/admin';
 
 export const AdminStock = () => {
+	const [stockVal, setStockVal] = useState(0)
+	const dispatch = useDispatch()
+	const stock = useSelector(state => state.admin.stock)
+	useEffect(() => {
+		dispatch(requestHistory())
+	}, [])
 	return (
 		<div className='adminStock'>
 			<div className="container">
 				<div className="admin_stock_container">
-					<select className='admin_stock_select'>
-						<option>Все</option>
-						<option>Расходники</option>
-						<option>Сформированные</option>
-						<option>Покрашенные</option>
-						<option>Собранные</option>
+					<select onChange={e => setStockVal(e.target.value)} className='admin_stock_select'>
+						<option value='0' defaultValue>Все</option>
+						<option value='1'>Расходники</option>
+						<option value='2'>Сформированные</option>
+						<option value='3'>Покрашенные</option>
+						<option value='4'>Собранные</option>
 					</select>
-					<div className="stock_block">
-						<div className="stock_title">
-							<h1>Расходники</h1>
-							<NavLink to='/admin/stock/resume' className='link'>
-								<button className='stock_btn'>Пополнить</button>
-							</NavLink>
+					{stockVal == '0' | stockVal == '1' ?
+						<div className="stock_block">
+							<div className="stock_title">
+								<h1>Расходники</h1>
+								<NavLink to='/admin/stock/resume' className='link'>
+									<button className='stock_btn'>Пополнить</button>
+								</NavLink>
+							</div>
+							<div className="stock_list">
+								<table>
+									<thead>
+										<tr>
+											<th>Продукт</th>
+											<th>Количество</th>
+										</tr>
+									</thead>
+									<tbody>
+										{stock.map(item => {
+											if (item.type_id == 1) {
+												return (
+													<tr>
+														<td data-label="Продукт">{item.product}</td>
+														<td data-label="Количество">{item.count}</td>
+													</tr>
+												)
+											}
+										})}
+									</tbody>
+								</table>
+							</div>
+						</div> : ''}
 
-						</div>
-
-						<div className="stock_list">
-							<table>
-								<thead>
-								<tr>
-									<th>Продукт</th>
-									<th>Количество</th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr>
-									<td data-label="Продукт">Крючок</td>
-									<td data-label="Количество">132</td>
-								</tr>
-								<tr>
-									<td data-label="Продукт">Кольцо</td>
-									<td data-label="Количество">2</td>
-								</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div className="stock_block">
-						<h1>Сформированные</h1>
-						<div className="stock_list">
-							<table>
-								<thead>
-								<tr>
-									<th>Продукт</th>
-									<th>Тип</th>
-									<th>Количество</th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr>
-									<td data-label="Продукт">Айма ратлин</td>
-									<td data-label="Тип">60мм 12гр</td>
-									<td data-label="Количество">132</td>
-								</tr>
-								<tr>
-									<td data-label="Продукт">Багет</td>
-									<td data-label="Тип">60м 17гр</td>
-									<td data-label="Количество">2</td>
-								</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div className="stock_block">
-						<h1>Покрашенные</h1>
-						<div className="stock_list">
-							<table>
-								<thead>
-								<tr>
-									<th>Продукт</th>
-									<th>Тип</th>
-									<th>Количество</th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr>
-									<td data-label="Продукт">Айма ратлин</td>
-									<td data-label="Тип">60мм 12гр</td>
-									<td data-label="Количество">132</td>
-								</tr>
-								<tr>
-									<td data-label="Продукт">Багет</td>
-									<td data-label="Тип">60м 17гр</td>
-									<td data-label="Количество">2</td>
-								</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div className="stock_block">
-					<h1>Собранные</h1>
-					<div className="stock_list">
-						<table>
-							<thead>
-							<tr>
-								<th>Продукт</th>
-								<th>Тип</th>
-								<th>Количество</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td data-label="Продукт">Айма ратлин</td>
-								<td data-label="Тип">60мм 12гр</td>
-								<td data-label="Количество">132</td>
-							</tr>
-							<tr>
-								<td data-label="Продукт">Багет</td>
-								<td data-label="Тип">60м 17гр</td>
-								<td data-label="Количество">2</td>
-							</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
+					{stockVal == '0' | stockVal == '2' ?
+						<div className="stock_block">
+							<h1>Сформированные</h1>
+							<div className="stock_list">
+								<table>
+									<thead>
+										<tr>
+											<th>Продукт</th>
+											<th>Тип</th>
+											<th>Количество</th>
+										</tr>
+									</thead>
+									<tbody>
+										{stock.map(item => {
+											if (item.type_id == 2) {
+												return (
+													<tr>
+														<td data-label="Продукт">{item.product}</td>
+														<td data-label="Тип">{item.volume}</td>
+														<td data-label="Количество">{item.count}</td>
+													</tr>
+												)
+											}
+										})}
+									</tbody>
+								</table>
+							</div>
+						</div> : ''}
+					{stockVal == '0' | stockVal == '3' ?
+						<div className="stock_block">
+							<h1>Покрашенные</h1>
+							<div className="stock_list">
+								<table>
+									<thead>
+										<tr>
+											<th>Продукт</th>
+											<th>Тип</th>
+											<th>Количество</th>
+										</tr>
+									</thead>
+									<tbody>
+										{stock.map(item => {
+											if (item.type_id == 3) {
+												return (
+													<tr>
+														<td data-label="Продукт">{item.product}</td>
+														<td data-label="Тип">{item.volume}</td>
+														<td data-label="Количество">{item.count}</td>
+													</tr>
+												)
+											}
+										})}
+									</tbody>
+								</table>
+							</div>
+						</div> : ''}
+					{stockVal == '0' | stockVal == '4' ?
+						<div className="stock_block">
+							<h1>Собранные</h1>
+							<div className="stock_list">
+								<table>
+									<thead>
+										<tr>
+											<th>Продукт</th>
+											<th>Тип</th>
+											<th>Количество</th>
+										</tr>
+									</thead>
+									<tbody>
+										{stock.map(item => {
+											if (item.type_id == 4) {
+												return (
+													<tr>
+														<td data-label="Продукт">{item.product}</td>
+														<td data-label="Тип">{item.volume}</td>
+														<td data-label="Количество">{item.count}</td>
+													</tr>
+												)
+											}
+										})}
+									</tbody>
+								</table>
+							</div>
+						</div> : ''}
 				</div>
 			</div>
 		</div>

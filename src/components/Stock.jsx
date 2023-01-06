@@ -35,6 +35,7 @@ export const Stock = () => {
                 <th>Продукт</th>
                 <th>Тип</th>
                 <th>Количество</th>
+                <th>Склад</th>
               </tr>
             </thead>
             <tbody>
@@ -44,6 +45,7 @@ export const Stock = () => {
                     <td data-label="Продукт">{item.product}</td>
                     <td data-label="Продукт">{!item.volume ? '-' : item.volume}</td>
                     <td data-label="Количество">{item.count}</td>
+                    <td data-label='Склад'>{item.type}</td>
                   </tr>
                 )
               })}

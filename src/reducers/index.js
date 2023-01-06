@@ -7,12 +7,15 @@ import authReducer from "./authReducer";
 import userReducer from "./userReducer";
 import otherReducer from "./otherReducer";
 import stockReducer from './stockReducer';
+import adminReducer from './adminReducer';
+
 
 const rootReducers = combineReducers({
 	auth: authReducer,
 	user: userReducer,
 	other: otherReducer,
-	stock: stockReducer
+	stock: stockReducer,
+	admin: adminReducer
 })
 
 const persistConfig = {

@@ -84,6 +84,26 @@ export const requestGetJob = (id) => {
 	}
 }
 
+export const requestFeedbackSend = (data) => {
+	return dispatch => {
+		try {
+			axios({
+				method: 'post',
+				url: '/other/create/feedback',
+				data: data
+			}).then(response => {
+				if (response.data.server_status == 1) {
+					alert(response.data.message)
+				} else {
+					dispatch(failed('Произошла ошибка в обработке'))
+				}
+			})
+		} catch (e) {
+			dispatch(failed("Неизвестная ошибка"))
+		}
+	}
+}
+
 export const requestAddUser = (data) => {
 	return dispatch => {
 		try {
