@@ -1,36 +1,52 @@
-import React from 'react';;
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { requestStockList, requestStockSearch } from '../actions/stock';
 
 export const Stock = () => {
+  const dispatch = useDispatch()
+  const stock = useSelector(state => state.stock.data)
+  const [value, setValue] = useState(1)
+  const [search, setSearch] = useState('')
+
+  useEffect(() => {
+    dispatch(requestStockList())
+  }, [])
+
+  function handleSearch(val, name) {
+    dispatch(requestStockSearch(val, name))
+  }
+
   return (
-    <div className='stock'>
+    <div className='stock' style={{marginBottom: '100px'}}>
       <div className="container">
         <div className="stock__wrapper">
           <div className="stock__filters">
-            <input type="text" placeholder='Поиск' className='stock__search'/>
-            <select className="stock_select">
-              <option>Рыбки</option>
-              <option>Расходники</option>
+            <input onChange={e => {setSearch(e.target.value); handleSearch(value, e.target.value)}}
+              type="text" placeholder='Поиск' className='stock__search' />
+            <select onChange={e => {setValue(e.target.value)
+              handleSearch(e.target.value, search)}} className="stock_select">
+              <option value='1'>Расходники</option>
+              <option value='2'>Рыбки</option>
             </select>
           </div>
           <table>
             <thead>
-            <tr>
-              <th>Продукт</th>
-              <th>Тип</th>
-              <th>Количество</th>
-            </tr>
+              <tr>
+                <th>Продукт</th>
+                <th>Тип</th>
+                <th>Количество</th>
+              </tr>
             </thead>
             <tbody>
-            <tr>
-              <td data-label="Продукт">Айма ратлин</td>
-              <td data-label="Продукт">60мм 12гр</td>
-              <td data-label="Количество">132</td>
-            </tr>
-            <tr>
-              <td data-label="Продукт">Багет</td>
-              <td data-label="Продукт"> 60м 17гр</td>
-              <td data-label="Количество">2</td>
-            </tr>
+              {stock.map(item => {
+                return (
+                  <tr>
+                    <td data-label="Продукт">{item.product}</td>
+                    <td data-label="Продукт">{!item.volume ? '-' : item.volume}</td>
+                    <td data-label="Количество">{item.count}</td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>

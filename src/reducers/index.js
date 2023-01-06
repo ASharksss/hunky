@@ -6,11 +6,13 @@ import storage from 'redux-persist/lib/storage'
 import authReducer from "./authReducer";
 import userReducer from "./userReducer";
 import otherReducer from "./otherReducer";
+import stockReducer from './stockReducer';
 
 const rootReducers = combineReducers({
 	auth: authReducer,
 	user: userReducer,
-	other: otherReducer
+	other: otherReducer,
+	stock: stockReducer
 })
 
 const persistConfig = {
