@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {requestFeedbackList} from "../../actions/other";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { requestFeedbackList } from "../../actions/other";
 
 export const AdminReview = () => {
 	const dispatch = useDispatch()
@@ -13,9 +13,10 @@ export const AdminReview = () => {
 			<div className="container">
 				<div className="adminReview_container">
 					<h1>Отзывы и предложения</h1>
-					<div className="review_block">
+					<div className="review_block"
+					style={{backgroundColor: '#df5151', fontSize: 'larger', color: 'white'}}>
 						<p>Аноним</p>
-						<p>04.01.22</p>
+						<p>2023-01-09 в 9:00</p>
 						<p>Поднять зарплату программисту</p>
 					</div>
 					{data.map(item => {

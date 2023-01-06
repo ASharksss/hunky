@@ -15,7 +15,7 @@ export const AdminFooter = () => {
     <div className='footer'>
       <div className="container">
         <div className="footer_wrapper">
-          <NavLink to='/admin/stock' className='home__btn_link'>
+          <NavLink to='/' className='home__btn_link'>
             <button className='footer__button'>
               <CiHome className='footer_icon' size={35}/>
               <p>Склад</p>
