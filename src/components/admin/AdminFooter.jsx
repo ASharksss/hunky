@@ -1,6 +1,5 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import { redirect } from 'react-router-dom'
 import {CiFaceSmile, CiAlignBottom, CiHome, CiBoxList, CiLogout} from "react-icons/ci";
 import {NavLink} from "react-router-dom";
 import {requestLogout} from "../../actions/auth";
@@ -10,10 +9,6 @@ export const AdminFooter = () => {
 
   const handleLogout = () => {
     dispatch(requestLogout())
-    // const logout = dispatch(requestLogout())
-    // if (!logout) {
-    //   return redirect("/");
-    // }
   };
 
   return (
