@@ -8,9 +8,6 @@ const initialState = {
     stock: [],
     products: [],
     user: [],
-    user_count: 0,
-    user_cancel: 0,
-    user_defect: 0,
     user_name: ''
 }
 
@@ -33,9 +30,6 @@ export default function adminReducer(state = initialState, action) {
                 ...state,
                 error: '',
                 user: action.payload.user,
-                user_count: action.payload.count,
-                user_cancel: action.payload.cancel,
-                user_defect: action.payload.defect,
                 user_name: action.payload.name
             }
         case PRODUCTS:

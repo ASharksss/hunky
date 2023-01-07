@@ -875,6 +875,16 @@ td {
     margin-bottom: 100px;
 }
 
+.user_filters input{
+    width: 250px;
+    height: 40px;
+}
+.user_filters select{
+    width: 250px;
+    height: 40px;
+    margin-left: 10px;
+}
+
 .adminReview_container h1 {
     margin-left: 8%;
 }

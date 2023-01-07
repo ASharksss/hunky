@@ -31,18 +31,15 @@ export const requestProducts = () => {
     }
 }
 
-export const requestUserInfo = (id) => {
+export const requestUserInfo = (id, date) => {
     return dispatch => {
         axios({
             method: 'get',
-            url: '/stock/admin/user/' + id
+            url: '/stock/admin/user/' + id +'?date=' + date
         }).then(response => {
             if (response.data.server_status == 1) {
                 const data = {
                     user: response.data.process,
-                    count: response.data.count,
-                    defect: response.data.defect,
-                    cancel: response.data.cancel,
                     name: response.data.user
                 }
                 dispatch(user_info(data))

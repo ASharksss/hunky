@@ -5,8 +5,9 @@ import { requestHistory } from '../actions/user';
 export const History = () => {
   const dispatch = useDispatch()
   const [date, setDate] = useState(1)
+  const [sum, setSum] = useState(0)
   const [page, setPage] = useState(1)
-  const history = useSelector(state => state.user.history)
+  const {history} = useSelector(state => state.user)
   useEffect(() => {
     dispatch(requestHistory(date, page))
   }, [])
@@ -14,6 +15,13 @@ export const History = () => {
     setDate(e.target.value); 
     dispatch(requestHistory(e.target.value, page))
   }
+  useEffect(() => {
+    let array = []
+    history.map(item => {
+      array.push(parseInt(item.process.count, 10))
+    })
+    setSum(array.reduce((partialSum, a) => partialSum + a, 0))
+  }, [history])
   return (
     <div className='profile' style={{ marginBottom: '100px' }}>
       <div className="container">
@@ -28,7 +36,7 @@ export const History = () => {
               <option value='4'>Год</option>
             </select>
           </div>
-          <h2 className='history_count'>Общее число: мильен</h2>
+          <h2 className='history_count'>Общее число: {sum}</h2>
           <div className="history__table">
 
             <table>

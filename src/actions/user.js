@@ -1,6 +1,6 @@
 import axios from "axios";
 import {Navigate} from 'react-router-dom'
-import {user_list, failed, job_list, get_job, history} from "../reducers/userReducer";
+import {user_list, failed, job_list, get_job, history, profile, profile_defects} from "../reducers/userReducer";
 
 
 export const requestUserList = () => {
@@ -135,9 +135,52 @@ export const requestHistory = (date, page) => {
 				if (response.data.server_status == 1) {
 					const data ={
 						history: response.data.history,
-						history_pages: response.data.pages
+						pages: response.data.pages
 					}
 					dispatch(history(data))
+				} else {
+					dispatch(failed('Произошла ошибка в обработке'))
+				}
+			})
+		} catch (e) {
+			dispatch(failed("Неизвестная ошибка"))
+		}
+	}
+}
+
+export const requestProfile = () => {
+	return dispatch => {
+		try {
+			axios({
+				method: 'get',
+				url: '/user/profile'
+			}).then(response => {
+				if (response.data.server_status == 1) {
+					const data ={
+						user: response.data.user,
+						cancel: response.data.cancel,
+						defect: response.data.defect
+					}
+					dispatch(profile(data))
+				} else {
+					dispatch(failed('Произошла ошибка в обработке'))
+				}
+			})
+		} catch (e) {
+			dispatch(failed("Неизвестная ошибка"))
+		}
+	}
+}
+
+export const requestProfileDefects = () => {
+	return dispatch => {
+		try {
+			axios({
+				method: 'get',
+				url: '/user/profile/defect'
+			}).then(response => {
+				if (response.data.server_status == 1) {
+					dispatch(profile_defects(response.data.defects))
 				} else {
 					dispatch(failed('Произошла ошибка в обработке'))
 				}
