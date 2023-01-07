@@ -11,7 +11,8 @@ const initialState = {
 	data: [],
 	jobs: [],
 	job: [],
-	history: []
+	history: [],
+	history_pages: 0
 }
 
 export default function authReduce(state = initialState, action) {
@@ -44,7 +45,8 @@ export default function authReduce(state = initialState, action) {
 		case GET_HISTORY:
 			return {
 				...state,
-				history: action.payload,
+				history: action.payload.history,
+				history_pages: action.payload.pages,
 				error: ''
 			}
 		default:

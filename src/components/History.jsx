@@ -1,24 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestHistory } from '../actions/user';
 
 export const History = () => {
   const dispatch = useDispatch()
+  const [date, setDate] = useState(1)
+  const [page, setPage] = useState(1)
   const history = useSelector(state => state.user.history)
   useEffect(() => {
-    dispatch(requestHistory())
+    dispatch(requestHistory(date, page))
   }, [])
+  function handleChangeDate(e) {
+    setDate(e.target.value); 
+    dispatch(requestHistory(e.target.value, page))
+  }
   return (
-    <div className='profile' style={{marginBottom:'100px'}}>
+    <div className='profile' style={{ marginBottom: '100px' }}>
       <div className="container">
         <div className="history__wrapper">
           <div className="history__filters">
             <input type="text" placeholder='Поиск' className='history__search' />
-            <select className="history_select">
-              <option>День</option>
-              <option>Неделя</option>
-              <option>Месяц</option>
-              <option>Год</option>
+            <select onChange={e => handleChangeDate(e)}
+              className="history_select">
+              <option value='1'>День</option>
+              <option value='2'>Неделя</option>
+              <option value='3'>Месяц</option>
+              <option value='4'>Год</option>
             </select>
           </div>
           <h2 className='history_count'>Общее число: мильен</h2>

@@ -125,15 +125,19 @@ export const requestAddUser = (data) => {
 	}
 }
 
-export const requestHistory = () => {
+export const requestHistory = (date, page) => {
 	return dispatch => {
 		try {
 			axios({
 				method: 'get',
-				url: '/user/history'
+				url: '/user/history?date=' + date + '&page=' + page
 			}).then(response => {
 				if (response.data.server_status == 1) {
-					dispatch(history(response.data.history))
+					const data ={
+						history: response.data.history,
+						history_pages: response.data.pages
+					}
+					dispatch(history(data))
 				} else {
 					dispatch(failed('Произошла ошибка в обработке'))
 				}
