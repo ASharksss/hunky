@@ -22,8 +22,9 @@ import {UsersDetail} from "./components/admin/UsersDetail";
 import {AdminReview} from "./components/admin/AdminReview";
 import {Auth} from "./components/Auth";
 import {useEffect} from "react";
-import { AdminProducts } from "./components/admin/adminProducts";
+import { AdminProducts } from "./components/admin/AdminProducts";
 import { AddProduct } from "./components/admin/addProduct";
+import { AddJob } from "./components/admin/job/addJob";
 
 axios.defaults.baseURL = 'http://192.168.8.100:5000/v1';
 
@@ -48,6 +49,7 @@ function App() {
               <Route index element={<AdminStock/>}/>
               <Route path='/admin/users' element={<AdminUsers/>}/>
               <Route path='/admin/products' element={<AdminProducts/>}/>
+              <Route path='/admin/job/add' element={<AddJob/>}/>
               <Route path='/admin/product/add' element={<AddProduct/>}/>
               <Route path='/admin/user/detail/:id' element={<UsersDetail/>}/>
               <Route path='/admin/users/add' element={<AddUser/>}/>

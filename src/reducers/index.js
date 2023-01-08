@@ -8,6 +8,7 @@ import userReducer from "./userReducer";
 import otherReducer from "./otherReducer";
 import stockReducer from './stockReducer';
 import adminReducer from './adminReducer';
+import jobReducer from './jobReducer';
 
 
 const rootReducers = combineReducers({
@@ -15,7 +16,8 @@ const rootReducers = combineReducers({
 	user: userReducer,
 	other: otherReducer,
 	stock: stockReducer,
-	admin: adminReducer
+	admin: adminReducer,
+	jon: jobReducer
 })
 
 const persistConfig = {
