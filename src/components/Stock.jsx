@@ -5,26 +5,34 @@ import { requestStockList, requestStockSearch } from '../actions/stock';
 export const Stock = () => {
   const dispatch = useDispatch()
   const stock = useSelector(state => state.stock.data)
-  const [value, setValue] = useState(1)
+  const [data, setData] = useState(stock)
   const [search, setSearch] = useState('')
 
   useEffect(() => {
     dispatch(requestStockList())
   }, [])
 
-  function handleSearch(val, name) {
-    dispatch(requestStockSearch(val, name))
+  useEffect(() => {
+    setData(stock)
+  }, [stock])
+
+  function handleSearch(val) {
+    dispatch(requestStockSearch(val))
+    setSearch('')
   }
+
+  const filteredData = data.filter(item => {
+    return item.product.toLowerCase().includes(search)
+  })
 
   return (
     <div className='stock' style={{marginBottom: '100px'}}>
       <div className="container">
         <div className="stock__wrapper">
           <div className="stock__filters">
-            <input onChange={e => {setSearch(e.target.value); handleSearch(value, e.target.value)}}
+            <input value={search} onChange={e => setSearch(e.target.value.toLowerCase())}
               type="text" placeholder='Поиск' className='stock__search' />
-            <select onChange={e => {setValue(e.target.value)
-              handleSearch(e.target.value, search)}} className="stock_select">
+            <select onChange={e => handleSearch(e.target.value)} className="stock_select">
               <option value='1'>Расходники</option>
               <option value='2'>Рыбки</option>
             </select>
@@ -39,7 +47,7 @@ export const Stock = () => {
               </tr>
             </thead>
             <tbody>
-              {stock.map(item => {
+              {filteredData.map(item => {
                 return (
                   <tr>
                     <td data-label="Продукт">{item.product}</td>

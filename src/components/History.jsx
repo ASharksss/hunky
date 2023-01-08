@@ -7,12 +7,21 @@ export const History = () => {
   const [date, setDate] = useState(1)
   const [sum, setSum] = useState(0)
   const [page, setPage] = useState(1)
-  const {history} = useSelector(state => state.user)
+  const { history } = useSelector(state => state.user)
+  const [data, setData] = useState(history)
+  const [search, setSearch] = useState('')
   useEffect(() => {
     dispatch(requestHistory(date, page))
   }, [])
+  useEffect(() => {
+    setData(history)
+  }, [history])
+  const filteredData = data.filter(item => {
+    return item.process.product.toLowerCase().includes(search)
+  })
   function handleChangeDate(e) {
-    setDate(e.target.value); 
+    setDate(e.target.value);
+    setSearch('')
     dispatch(requestHistory(e.target.value, page))
   }
   useEffect(() => {
@@ -27,7 +36,8 @@ export const History = () => {
       <div className="container">
         <div className="history__wrapper">
           <div className="history__filters">
-            <input type="text" placeholder='Поиск' className='history__search' />
+            <input value={search} onChange={e => setSearch(e.target.value.toLowerCase())}
+              type="text" placeholder='Поиск' className='history__search' />
             <select onChange={e => handleChangeDate(e)}
               className="history_select">
               <option value='1'>День</option>
@@ -51,7 +61,7 @@ export const History = () => {
                 </tr>
               </thead>
               <tbody>
-                {history.map(item => {
+                {filteredData.map(item => {
                   return (
                     <tr>
                       <td data-label="Продукт">{item.process.product}</td>

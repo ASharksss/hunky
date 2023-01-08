@@ -20,12 +20,12 @@ export const requestStockList = () => {
     }
 }
 
-export const requestStockSearch = (val, name) => {
+export const requestStockSearch = (val) => {
     return dispatch => {
         try {
             axios({
                 method: 'get',
-                url: '/stock/?cat=' + val + '&name=' + name
+                url: '/stock/?cat=' + val
             }).then(response => {
                 if (response.data.server_status == 1) {
                     dispatch(stock_list(response.data.stocks))

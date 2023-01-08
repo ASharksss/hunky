@@ -10,6 +10,8 @@ export const UsersDetail = () => {
 	const [cancel, setCancel] = useState(0)
 	const [myType, setType] = useState('0')
 	const { user, user_name } = useSelector(state => state.admin)
+	const [data, setData] = useState(user)
+	const [search, setSearch] = useState('')
 	useEffect(() => {
 		const id = window.location.pathname.split('/')[4]
 		dispatch(requestUserInfo(id, date))
@@ -35,13 +37,20 @@ export const UsersDetail = () => {
 		setDate(e.target.value);
 		dispatch(requestUserInfo(id, e.target.value))
 	}
+	useEffect(() => {
+		setData(user)
+	}, [user])
+	const filteredData = data.filter(item => {
+		return item.process.product.toLowerCase().includes(search)
+	})
 	return (
 		<div className='user_detail'>
 			<div className="container">
 				<div className="user_detail_container">
 					<h1>{user_name}</h1>
 					<div className="user_filters">
-						<input type="text" placeholder='Поиск' />
+						<input value={search} onChange={e => setSearch(e.target.value.toLowerCase())}
+							type="text" placeholder='Поиск' />
 						<select onChange={e => handleChangeDate(e)}>
 							<option value='1'>День</option>
 							<option value='2'>Неделя</option>
@@ -68,7 +77,7 @@ export const UsersDetail = () => {
 									</tr>
 								</thead>
 								<tbody>
-									{user.map(item => {
+									{filteredData.map(item => {
 										return (
 											<tr>
 												<td data-label="Продукт">{item.process.product}</td>
@@ -94,7 +103,7 @@ export const UsersDetail = () => {
 									</tr>
 								</thead>
 								<tbody>
-									{user.map(item => {
+									{filteredData.map(item => {
 										if (item.process.defect || item.process.status_id == 3) {
 											return (
 												<tr>
@@ -122,7 +131,7 @@ export const UsersDetail = () => {
 									</tr>
 								</thead>
 								<tbody>
-									{user.map(item => {
+									{filteredData.map(item => {
 										if (item.process.status_id == 4) {
 											return (
 												<tr>
