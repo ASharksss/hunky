@@ -1,5 +1,5 @@
 import axios from "axios";
-import { stock, failed, products, user_info } from "../reducers/adminReducer";
+import { stock, failed, products, user_info, add_products } from "../reducers/adminReducer";
 
 export const requestHistory = () => {
     return dispatch => {
@@ -35,7 +35,7 @@ export const requestUserInfo = (id, date) => {
     return dispatch => {
         axios({
             method: 'get',
-            url: '/stock/admin/user/' + id +'?date=' + date
+            url: '/stock/admin/user/' + id + '?date=' + date
         }).then(response => {
             if (response.data.server_status == 1) {
                 const data = {
@@ -61,6 +61,39 @@ export const requestAddProducts = (data) => {
                 alert(response.data.message)
                 window.location.reload()
             } else {
+                dispatch(failed('Произошла ошибка в обработке'))
+            }
+        })
+    }
+}
+
+export const requestProductList = () => {
+    return dispatch => {
+        axios({
+            method: 'get',
+            url: '/admin/product/list',
+        }).then(response => {
+            if (response.data.server_status == 1) {
+                dispatch(products(response.data.products))
+            } else {
+                dispatch(failed('Произошла ошибка в обработке'))
+            }
+        })
+    }
+}
+
+export const requestAddProduct = (data) => {
+    return dispatch => {
+        axios({
+            method: 'post',
+            url: '/admin/product/add',
+            data: data
+        }).then(response => {
+            if (response.data.server_status == 1) {
+                alert('Товар добавлен')
+                window.location.reload()
+            } else {
+                alert(response.data.message)
                 dispatch(failed('Произошла ошибка в обработке'))
             }
         })

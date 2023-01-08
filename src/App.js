@@ -22,8 +22,10 @@ import {UsersDetail} from "./components/admin/UsersDetail";
 import {AdminReview} from "./components/admin/AdminReview";
 import {Auth} from "./components/Auth";
 import {useEffect} from "react";
+import { AdminProducts } from "./components/admin/adminProducts";
+import { AddProduct } from "./components/admin/addProduct";
 
-axios.defaults.baseURL = 'http://192.168.1.8:5000/v1';
+axios.defaults.baseURL = 'http://192.168.8.100:5000/v1';
 
 function App() {
   const auth = useSelector(state => state.auth)
@@ -45,6 +47,8 @@ function App() {
             <Route path='/' element={<AdminLayout/>}>
               <Route index element={<AdminStock/>}/>
               <Route path='/admin/users' element={<AdminUsers/>}/>
+              <Route path='/admin/products' element={<AdminProducts/>}/>
+              <Route path='/admin/product/add' element={<AddProduct/>}/>
               <Route path='/admin/user/detail/:id' element={<UsersDetail/>}/>
               <Route path='/admin/users/add' element={<AddUser/>}/>
               <Route path='/admin/users/review' element={<AdminReview/>}/>
