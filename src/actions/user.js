@@ -1,6 +1,10 @@
 import axios from "axios";
-import {Navigate} from 'react-router-dom'
-import {user_list, failed, job_list, get_job, history, profile, profile_defects} from "../reducers/userReducer";
+import { Navigate } from 'react-router-dom'
+import {
+	user_list, failed,
+	job_list, get_job, history, profile,
+	profile_defects, profile_canceled
+} from "../reducers/userReducer";
 
 
 export const requestUserList = () => {
@@ -119,7 +123,7 @@ export const requestAddUser = (data) => {
 					alert(response.data.message)
 				}
 			})
-		}catch (e) {
+		} catch (e) {
 			alert("Неизвестная ошибка")
 		}
 	}
@@ -133,7 +137,7 @@ export const requestHistory = (date, page) => {
 				url: '/user/history?date=' + date + '&page=' + page
 			}).then(response => {
 				if (response.data.server_status == 1) {
-					const data ={
+					const data = {
 						history: response.data.history,
 						pages: response.data.pages
 					}
@@ -156,7 +160,7 @@ export const requestProfile = () => {
 				url: '/user/profile'
 			}).then(response => {
 				if (response.data.server_status == 1) {
-					const data ={
+					const data = {
 						user: response.data.user,
 						cancel: response.data.cancel,
 						defect: response.data.defect
@@ -172,15 +176,34 @@ export const requestProfile = () => {
 	}
 }
 
-export const requestProfileDefects = () => {
+export const requestProfileDefects = (date) => {
 	return dispatch => {
 		try {
 			axios({
 				method: 'get',
-				url: '/user/profile/defect'
+				url: '/user/profile/defect?date=' + date
 			}).then(response => {
 				if (response.data.server_status == 1) {
 					dispatch(profile_defects(response.data.defects))
+				} else {
+					dispatch(failed('Произошла ошибка в обработке'))
+				}
+			})
+		} catch (e) {
+			dispatch(failed("Неизвестная ошибка"))
+		}
+	}
+}
+
+export const requestProfileCanceled = (date) => {
+	return dispatch => {
+		try {
+			axios({
+				method: 'get',
+				url: '/user/profile/cancel?date=' + date
+			}).then(response => {
+				if (response.data.server_status == 1) {
+					dispatch(profile_canceled(response.data.cancel))
 				} else {
 					dispatch(failed('Произошла ошибка в обработке'))
 				}

@@ -6,17 +6,27 @@ export const DefectDetail = () => {
 	const dispatch = useDispatch()
 	const [sum, setSum] = useState(0)
 	const defects = useSelector(state => state.user.profile_defects)
+	const [select, setSelect] = useState(1)
+	const [search, setSearch] = useState('')
+
 	useEffect(() => {
-		dispatch(requestProfileDefects())
+		dispatch(requestProfileDefects(select))
 	}, [])
 
 	useEffect(() => {
 		let array = []
 		defects.map(item => {
-		  array.push(parseInt(item.process.defect, 10))
+			array.push(parseInt(item.process.defect, 10))
 		})
 		setSum(array.reduce((partialSum, a) => partialSum + a, 0))
-	  }, [defects])
+	}, [defects])
+
+	let filteredData = defects.filter(item => item.process.product.toLowerCase().includes(search))
+
+	const handleSelect = (val) => {
+		setSelect(val)
+		dispatch(requestProfileDefects(val))
+	}
 	return (
 		<div className='defect'>
 			<div className="container">
@@ -27,12 +37,13 @@ export const DefectDetail = () => {
 					</div>
 
 					<div className="history__filters">
-						<input type="text" placeholder='Поиск' className='history__search' />
-						<select className="history_select">
-							<option>День</option>
-							<option>Неделя</option>
-							<option>Месяц</option>
-							<option>Год</option>
+						<input type="text" value={search} onChange={e => setSearch(e.target.value.toLowerCase())}
+							placeholder='Поиск' className='history__search' />
+						<select defaultValue={select} onChange={e => handleSelect(e.target.value)} className="history_select">
+							<option value='1'>День</option>
+							<option value='2'>Неделя</option>
+							<option value='3'>Месяц</option>
+							<option value='4'>Год</option>
 						</select>
 					</div>
 					<h2 className='history_count'>Общее число: {sum}</h2>
@@ -48,7 +59,7 @@ export const DefectDetail = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{defects.map(item => {
+								{filteredData.map(item => {
 									return (
 										<tr>
 											<td data-label="Продукт">{item.process.product}</td>

@@ -16,9 +16,7 @@ export const History = () => {
   useEffect(() => {
     setData(history)
   }, [history])
-  const filteredData = data.filter(item => {
-    return item.process.product.toLowerCase().includes(search)
-  })
+  const filteredData = data.filter(item => item.process.product.toLowerCase().includes(search))
   function handleChangeDate(e) {
     setDate(e.target.value);
     setSearch('')
