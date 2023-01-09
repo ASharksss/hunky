@@ -23,7 +23,17 @@ export const HomeDetail = () => {
 			'count': count,
 			'defect': defect
 		}
-		await dispatch(requestAddJob(data))
+		if (detail) {
+			if (count > 0) {
+				await dispatch(requestAddJob(data))
+			} else if (defect > 0) {
+				await dispatch(requestAddJob(data))
+			} else {
+				alert('Поля значений пустые')
+			}
+		} else {
+			alert('Не все поля заполнены')
+		}
 	}
 	if (job.length !== 0) {
 		return (

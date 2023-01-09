@@ -25,6 +25,7 @@ import {useEffect} from "react";
 import { AdminProducts } from "./components/admin/AdminProducts";
 import { AddProduct } from "./components/admin/addProduct";
 import { AddJob } from "./components/admin/job/addJob";
+import { HistoryDetail } from "./components/HistoryDetail";
 
 axios.defaults.baseURL = 'http://192.168.8.100:5000/v1';
 
@@ -63,6 +64,7 @@ function App() {
               <Route path='/product/:id' element={<HomeDetail/>}/>
               <Route path='/stock' element={<Stock/>}/>
               <Route path='/history' element={<History/>}/>
+              <Route path='/history/:id' element={<HistoryDetail />}/>
               <Route path='/profile' element={<Profile/>}/>
               <Route path='/profile/review' element={<Review/>}/>
               <Route path='/profile/defect' element={<DefectDetail/>}/>

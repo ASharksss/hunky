@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { requestHistory } from '../actions/user';
+import { NavLink } from 'react-router-dom';
+import { requestDeleteProcess, requestHistory } from '../actions/user';
 
 export const History = () => {
   const dispatch = useDispatch()
@@ -17,6 +18,12 @@ export const History = () => {
     setData(history)
   }, [history])
   const filteredData = data.filter(item => item.process.product.toLowerCase().includes(search))
+  const handleRemove = (id) => {
+    const conf = window.confirm('Подтверждение на удаление')
+    if (conf) {
+      dispatch(requestDeleteProcess(id))
+    }
+  }
   function handleChangeDate(e) {
     setDate(e.target.value);
     setSearch('')
@@ -61,15 +68,18 @@ export const History = () => {
               <tbody>
                 {filteredData.map(item => {
                   return (
-                    <tr>
+                    <tr key={item.process.id}>
                       <td data-label="Продукт">{item.process.product}</td>
                       <td data-label="Тип">{item.info}</td>
                       <td data-label="Сделано">{item.process.count}</td>
                       <td data-label="Брак">{item.process.defect}</td>
                       <td data-label="Дата добавления">{item.process.date}</td>
                       <td data-label="Кнопки">
-                        <button className='history__btn'>Изменить</button>
-                        <button className='history__btn'>Удалить</button>
+                        <NavLink to={'/history/' + item.process.id}>
+                          <button className='history__btn' >Изменить</button>
+                        </NavLink>
+                        <button onClick={() => handleRemove(item.process.id)}
+                          className='history__btn'>Удалить</button>
                       </td>
                     </tr>
                   )

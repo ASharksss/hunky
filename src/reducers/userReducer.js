@@ -5,6 +5,7 @@ const PROFILE_DEFECTS = 'PROFILE_DEFECTS';
 const PROFILE_CANCELED = 'PROFILE_CANCELED';
 const JOB_LIST = 'JOB_LIST'
 const GET_JOB = 'GET_JOB'
+const UPDATE_PROCESS = 'UPDATE_PROCESS'
 const GET_HISTORY = 'GET_HISTORY'
 
 
@@ -14,6 +15,7 @@ const initialState = {
 	jobs: [],
 	job: [],
 	history: [],
+	proces: [],
 	history_pages: 0,
 	profile: [],
 	profile_defects: [],
@@ -50,18 +52,24 @@ export default function authReduce(state = initialState, action) {
 				jobs: action.payload,
 				error: ''
 			}
+		case UPDATE_PROCESS:
+			return {
+				...state,
+				process: action.payload,
+				error: ''
+			}
 		case PROFILE_DEFECTS:
 			return {
 				...state,
 				profile_defects: action.payload,
 				error: ''
 			}
-			case PROFILE_CANCELED:
-				return {
-					...state,
-					profile_canceled: action.payload,
-					error: ''
-				}
+		case PROFILE_CANCELED:
+			return {
+				...state,
+				profile_canceled: action.payload,
+				error: ''
+			}
 		case GET_JOB:
 			return {
 				...state,
@@ -84,6 +92,7 @@ export const user_list = data => ({ type: USER_LIST, payload: data })
 export const job_list = data => ({ type: JOB_LIST, payload: data })
 export const history = data => ({ type: GET_HISTORY, payload: data })
 export const profile = data => ({ type: USER_PROFILE, payload: data })
+export const update_process = data => ({ type: UPDATE_PROCESS, payload: data })
 export const profile_defects = data => ({ type: PROFILE_DEFECTS, payload: data })
 export const profile_canceled = data => ({ type: PROFILE_CANCELED, payload: data })
 export const get_job = data => ({ type: GET_JOB, payload: data })

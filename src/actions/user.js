@@ -1,7 +1,7 @@
 import axios from "axios";
-import { Navigate } from 'react-router-dom'
+import { Navigate, redirect } from 'react-router-dom'
 import {
-	user_list, failed,
+	user_list, failed, update_process,
 	job_list, get_job, history, profile,
 	profile_defects, profile_canceled
 } from "../reducers/userReducer";
@@ -204,6 +204,66 @@ export const requestProfileCanceled = (date) => {
 			}).then(response => {
 				if (response.data.server_status == 1) {
 					dispatch(profile_canceled(response.data.cancel))
+				} else {
+					dispatch(failed('Произошла ошибка в обработке'))
+				}
+			})
+		} catch (e) {
+			dispatch(failed("Неизвестная ошибка"))
+		}
+	}
+}
+
+export const requestGetProcess = (id) => {
+	return dispatch => {
+		try {
+			axios({
+				method: 'get',
+				url: '/user/history/update/' + id
+			}).then(response => {
+				if (response.data.server_status == 1) {
+					dispatch(update_process(response.data.process))
+				} else {
+					dispatch(failed('Произошла ошибка в обработке'))
+				}
+			})
+		} catch (e) {
+			dispatch(failed("Неизвестная ошибка"))
+		}
+	}
+}
+
+export const requestUpdateProcess = (id, data) => {
+	return dispatch => {
+		try {
+			axios({
+				method: 'put',
+				url: '/user/history/update/' + id,
+				data: data
+			}).then(response => {
+				if (response.data.server_status == 1) {
+					alert(response.data.message)
+					redirect('/history')
+				} else {
+					dispatch(failed('Произошла ошибка в обработке'))
+				}
+			})
+		} catch (e) {
+			dispatch(failed("Неизвестная ошибка"))
+		}
+	}
+}
+
+export const requestDeleteProcess = (id) => {
+	return dispatch => {
+		try {
+			axios({
+				method: 'delete',
+				url: '/user/history/remove/' + id
+			}).then(response => {
+				if (response.data.server_status == 1) {
+					alert(response.data.message)
+					dispatch(requestHistory(1, 1))
 				} else {
 					dispatch(failed('Произошла ошибка в обработке'))
 				}
