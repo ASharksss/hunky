@@ -7,9 +7,19 @@ export const AdminStock = () => {
 	const [stockVal, setStockVal] = useState(0)
 	const dispatch = useDispatch()
 	const stock = useSelector(state => state.admin.stock)
+  	const [data, setData] = useState(stock)
 	useEffect(() => {
 		dispatch(requestHistory())
 	}, [])
+	useEffect(() => {
+		const array = stock
+		array.sort(function(a, b){
+		    if(a.product < b.product) { return -1; }
+		    if(a.product > b.product) { return 1; }
+		    return 0;
+		})
+		setData(array)
+	}, [stock])
 	return (
 		<div className='adminStock'>
 			<div className="container">
@@ -38,7 +48,7 @@ export const AdminStock = () => {
 										</tr>
 									</thead>
 									<tbody>
-										{stock.map(item => {
+										{data.map(item => {
 											if (item.type_id == 1) {
 												return (
 													<tr>
@@ -66,7 +76,7 @@ export const AdminStock = () => {
 										</tr>
 									</thead>
 									<tbody>
-										{stock.map(item => {
+										{data.map(item => {
 											if (item.type_id == 2) {
 												return (
 													<tr>
@@ -94,7 +104,7 @@ export const AdminStock = () => {
 										</tr>
 									</thead>
 									<tbody>
-										{stock.map(item => {
+										{data.map(item => {
 											if (item.type_id == 3) {
 												return (
 													<tr>
@@ -122,7 +132,7 @@ export const AdminStock = () => {
 										</tr>
 									</thead>
 									<tbody>
-										{stock.map(item => {
+										{data.map(item => {
 											if (item.type_id == 4) {
 												return (
 													<tr>

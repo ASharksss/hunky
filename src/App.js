@@ -27,7 +27,7 @@ import { AddProduct } from "./components/admin/addProduct";
 import { AddJob } from "./components/admin/job/addJob";
 import { HistoryDetail } from "./components/HistoryDetail";
 
-axios.defaults.baseURL = 'http://192.168.8.100:5000/v1';
+axios.defaults.baseURL = 'http://192.168.8.102:5000/v1';
 
 function App() {
   const auth = useSelector(state => state.auth)
@@ -53,6 +53,7 @@ function App() {
               <Route path='/admin/job/add' element={<AddJob/>}/>
               <Route path='/admin/product/add' element={<AddProduct/>}/>
               <Route path='/admin/user/detail/:id' element={<UsersDetail/>}/>
+              <Route path='/history/:id' element={<HistoryDetail />}/>
               <Route path='/admin/users/add' element={<AddUser/>}/>
               <Route path='/admin/users/review' element={<AdminReview/>}/>
               <Route path='/admin/stock/resume' element={<StockResume/>}/>
@@ -64,7 +65,6 @@ function App() {
               <Route path='/product/:id' element={<HomeDetail/>}/>
               <Route path='/stock' element={<Stock/>}/>
               <Route path='/history' element={<History/>}/>
-              <Route path='/history/:id' element={<HistoryDetail />}/>
               <Route path='/profile' element={<Profile/>}/>
               <Route path='/profile/review' element={<Review/>}/>
               <Route path='/profile/defect' element={<DefectDetail/>}/>

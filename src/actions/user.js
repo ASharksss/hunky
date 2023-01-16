@@ -253,23 +253,3 @@ export const requestUpdateProcess = (id, data) => {
 		}
 	}
 }
-
-export const requestDeleteProcess = (id) => {
-	return dispatch => {
-		try {
-			axios({
-				method: 'delete',
-				url: '/user/history/remove/' + id
-			}).then(response => {
-				if (response.data.server_status == 1) {
-					alert(response.data.message)
-					dispatch(requestHistory(1, 1))
-				} else {
-					dispatch(failed('Произошла ошибка в обработке'))
-				}
-			})
-		} catch (e) {
-			dispatch(failed("Неизвестная ошибка"))
-		}
-	}
-}

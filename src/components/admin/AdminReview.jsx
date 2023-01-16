@@ -13,12 +13,6 @@ export const AdminReview = () => {
 			<div className="container">
 				<div className="adminReview_container">
 					<h1>Отзывы и предложения</h1>
-					<div className="review_block"
-					style={{backgroundColor: '#df5151', fontSize: 'larger', color: 'white'}}>
-						<p>Аноним</p>
-						<p>2023-01-09 в 9:00</p>
-						<p>Поднять зарплату программисту</p>
-					</div>
 					{data.map(item => {
 						return (
 							<div className="review_block">

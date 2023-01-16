@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { requestUserInfo } from '../../actions/admin';
+import { requestUserInfo, requestDeleteProcess } from '../../actions/admin';
 
 export const UsersDetail = () => {
 	const dispatch = useDispatch()
@@ -43,6 +44,13 @@ export const UsersDetail = () => {
 	const filteredData = data.filter(item => {
 		return item.process.product.toLowerCase().includes(search)
 	})
+	const handleRemove = (id) => {
+		const u_id = window.location.pathname.split('/')[4]
+	    const conf = window.confirm('Подтверждение на удаление')
+	    if (conf) {
+	      dispatch(requestDeleteProcess(id, u_id))
+	    }
+	}
 	return (
 		<div className='user_detail'>
 			<div className="container">
@@ -74,6 +82,7 @@ export const UsersDetail = () => {
 										<th>Тип</th>
 										<th>Сделано</th>
 										<th>Дата добавления</th>
+										<th>Действия</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -84,6 +93,13 @@ export const UsersDetail = () => {
 												<td data-label="Тип">{item.info}</td>
 												<td data-label="Сделано">{item.process.count}</td>
 												<td data-label="Дата добавления">{item.process.date}</td>
+												<td data-label="Кнопки">
+							                        <NavLink to={'/history/' + item.process.id}>
+							                          <button className='history__btn' >Изменить</button>
+							                        </NavLink>
+							                        <button onClick={() => handleRemove(item.process.id)}
+							                          className='history__btn'>Удалить</button>
+							                    </td>
 											</tr>
 										)
 									})}
@@ -100,6 +116,7 @@ export const UsersDetail = () => {
 										<th>Тип</th>
 										<th>Брак</th>
 										<th>Дата добавления</th>
+										<th>Действия</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -111,6 +128,13 @@ export const UsersDetail = () => {
 													<td data-label="Тип">{item.info}</td>
 													<td data-label="Брак">{item.process.defect}</td>
 													<td data-label="Дата добавления">{item.process.date}</td>
+													<td data-label="Кнопки">
+														<NavLink to={'/history/' + item.process.id}>
+															<button className='history__btn' >Изменить</button>
+														</NavLink>
+														<button onClick={() => handleRemove(item.process.id)}
+																className='history__btn'>Удалить</button>
+													</td>
 												</tr>
 											)
 										}
@@ -128,6 +152,7 @@ export const UsersDetail = () => {
 										<th>Тип</th>
 										<th>Отмена</th>
 										<th>Дата добавления</th>
+										<th>Действия</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -139,6 +164,13 @@ export const UsersDetail = () => {
 													<td data-label="Тип">{item.info}</td>
 													<td data-label="Отменено">{item.process.count}</td>
 													<td data-label="Дата добавления">{item.process.date}</td>
+													<td data-label="Кнопки">
+														<NavLink to={'/history/' + item.process.id}>
+															<button className='history__btn' >Изменить</button>
+														</NavLink>
+														<button onClick={() => handleRemove(item.process.id)}
+																className='history__btn'>Удалить</button>
+													</td>
 												</tr>
 											)
 										}

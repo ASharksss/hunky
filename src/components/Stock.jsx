@@ -13,7 +13,13 @@ export const Stock = () => {
   }, [])
 
   useEffect(() => {
-    setData(stock)
+  	const array = stock
+  	array.sort(function(a, b){
+	    if(a.product < b.product) { return -1; }
+	    if(a.product > b.product) { return 1; }
+	    return 0;
+	})
+    setData(array)
   }, [stock])
 
   function handleSearch(val) {

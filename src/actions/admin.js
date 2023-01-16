@@ -99,3 +99,23 @@ export const requestAddProduct = (data) => {
         })
     }
 }
+
+export const requestDeleteProcess = (id, u_id) => {
+    return dispatch => {
+        try {
+            axios({
+                method: 'delete',
+                url: '/user/history/remove/' + id
+            }).then(response => {
+                if (response.data.server_status == 1) {
+                    alert(response.data.message)
+                    dispatch(requestUserInfo(u_id, 1))
+                } else {
+                    dispatch(failed('Произошла ошибка в обработке'))
+                }
+            })
+        } catch (e) {
+            dispatch(failed("Неизвестная ошибка"))
+        }
+    }
+}

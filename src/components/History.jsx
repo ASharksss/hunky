@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { requestDeleteProcess, requestHistory } from '../actions/user';
+import { requestHistory } from '../actions/user';
 
 export const History = () => {
   const dispatch = useDispatch()
@@ -18,12 +17,6 @@ export const History = () => {
     setData(history)
   }, [history])
   const filteredData = data.filter(item => item.process.product.toLowerCase().includes(search))
-  const handleRemove = (id) => {
-    const conf = window.confirm('Подтверждение на удаление')
-    if (conf) {
-      dispatch(requestDeleteProcess(id))
-    }
-  }
   function handleChangeDate(e) {
     setDate(e.target.value);
     setSearch('')
@@ -74,13 +67,6 @@ export const History = () => {
                       <td data-label="Сделано">{item.process.count}</td>
                       <td data-label="Брак">{item.process.defect}</td>
                       <td data-label="Дата добавления">{item.process.date}</td>
-                      <td data-label="Кнопки">
-                        <NavLink to={'/history/' + item.process.id}>
-                          <button className='history__btn' >Изменить</button>
-                        </NavLink>
-                        <button onClick={() => handleRemove(item.process.id)}
-                          className='history__btn'>Удалить</button>
-                      </td>
                     </tr>
                   )
                 })}
