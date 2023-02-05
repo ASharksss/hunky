@@ -31,11 +31,11 @@ export const requestProducts = () => {
     }
 }
 
-export const requestUserInfo = (id, date) => {
+export const requestUserInfo = (id, f_date, s_date) => {
     return dispatch => {
         axios({
             method: 'get',
-            url: '/stock/admin/user/' + id + '?date=' + date
+            url: '/stock/admin/user/' + id + '?f_date=' + f_date + '&s_date=' + s_date
         }).then(response => {
             if (response.data.server_status == 1) {
                 const data = {

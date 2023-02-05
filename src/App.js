@@ -27,7 +27,7 @@ import { AddProduct } from "./components/admin/addProduct";
 import { AddJob } from "./components/admin/job/addJob";
 import { HistoryDetail } from "./components/HistoryDetail";
 
-axios.defaults.baseURL = 'http://192.168.8.102:5000/v1';
+axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
 
 function App() {
   const auth = useSelector(state => state.auth)

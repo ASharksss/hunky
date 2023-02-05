@@ -3,9 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestUserInfo, requestDeleteProcess } from '../../actions/admin';
 
+const id = window.location.pathname.split('/')[4]
+
 export const UsersDetail = () => {
 	const dispatch = useDispatch()
-	const [date, setDate] = useState(1)
+	const [f_date, setFirstDate] = useState('')
+	const [s_date, setSecDate] = useState('')
 	const [count, setCount] = useState(0)
 	const [defect, setDefect] = useState(0)
 	const [cancel, setCancel] = useState(0)
@@ -15,7 +18,7 @@ export const UsersDetail = () => {
 	const [search, setSearch] = useState('')
 	useEffect(() => {
 		const id = window.location.pathname.split('/')[4]
-		dispatch(requestUserInfo(id, date))
+		dispatch(requestUserInfo(id, f_date, s_date))
 		setType('0')
 	}, [])
 	useEffect(() => {
@@ -33,11 +36,10 @@ export const UsersDetail = () => {
 		setCancel(arrayCancel.reduce((partialSum, a) => partialSum + a, 0))
 
 	}, [user])
-	function handleChangeDate(e) {
-		const id = window.location.pathname.split('/')[4]
-		setDate(e.target.value);
-		dispatch(requestUserInfo(id, e.target.value))
-	}
+	useEffect(() => {
+		dispatch(requestUserInfo(id, f_date, s_date))
+		setType('0')
+	}, [f_date, s_date])
 	useEffect(() => {
 		setData(user)
 	}, [user])
@@ -46,10 +48,10 @@ export const UsersDetail = () => {
 	})
 	const handleRemove = (id) => {
 		const u_id = window.location.pathname.split('/')[4]
-	    const conf = window.confirm('Подтверждение на удаление')
-	    if (conf) {
-	      dispatch(requestDeleteProcess(id, u_id))
-	    }
+		const conf = window.confirm('Подтверждение на удаление')
+		if (conf) {
+			dispatch(requestDeleteProcess(id, u_id))
+		}
 	}
 	return (
 		<div className='user_detail'>
@@ -59,17 +61,13 @@ export const UsersDetail = () => {
 					<div className="user_filters">
 						<input value={search} onChange={e => setSearch(e.target.value.toLowerCase())}
 							type="text" placeholder='Поиск' />
-						<select onChange={e => handleChangeDate(e)}>
-							<option value='1'>День</option>
-							<option value='2'>Неделя</option>
-							<option value='3'>Месяц</option>
-							<option value='4'>Год</option>
-						</select>
+						<input value={f_date} onChange={e => setFirstDate(e.target.value)} type="date" />
+						<input value={s_date} onChange={e => setSecDate(e.target.value)} type="date" />
 						<select onChange={e => setType(e.target.value)}>
 							<option value='0' defaultValue='0'>Все</option>
 							<option value='1'>Сделано</option>
 							<option value='2'>Брак</option>
-							<option value='3'>Отмена</option>
+							<option value='3date.toISOString()'>Отмена</option>
 						</select>
 					</div>
 					{myType == '1' | myType == '0' ?
@@ -93,13 +91,18 @@ export const UsersDetail = () => {
 												<td data-label="Тип">{item.info}</td>
 												<td data-label="Сделано">{item.process.count}</td>
 												<td data-label="Дата добавления">{item.process.date}</td>
-												<td data-label="Кнопки">
-							                        <NavLink to={'/history/' + item.process.id}>
-							                          <button className='history__btn' >Изменить</button>
-							                        </NavLink>
-							                        <button onClick={() => handleRemove(item.process.id)}
-							                          className='history__btn'>Удалить</button>
-							                    </td>
+												{item.process.remove ?
+													<td data-label="Кнопки">
+														Запись удалена
+													</td> :
+													<td data-label="Кнопки">
+														<NavLink to={'/history/' + item.process.id}>
+															<button className='history__btn' >Изменить</button>
+														</NavLink>
+														<button onClick={() => handleRemove(item.process.id)}
+															className='history__btn'>Удалить</button>
+													</td>
+												}
 											</tr>
 										)
 									})}
@@ -133,7 +136,7 @@ export const UsersDetail = () => {
 															<button className='history__btn' >Изменить</button>
 														</NavLink>
 														<button onClick={() => handleRemove(item.process.id)}
-																className='history__btn'>Удалить</button>
+															className='history__btn'>Удалить</button>
 													</td>
 												</tr>
 											)
@@ -169,7 +172,7 @@ export const UsersDetail = () => {
 															<button className='history__btn' >Изменить</button>
 														</NavLink>
 														<button onClick={() => handleRemove(item.process.id)}
-																className='history__btn'>Удалить</button>
+															className='history__btn'>Удалить</button>
 													</td>
 												</tr>
 											)
