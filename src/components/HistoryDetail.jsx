@@ -6,8 +6,8 @@ import { requestGetJob, requestAddJob, requestGetProcess, requestUpdateProcess }
 export const HistoryDetail = (props) => {
     const dispatch = useDispatch()
     const process = useSelector(state => state.user.process)
-    const [count, setCount] = useState()
-    const [defect, setDefect] = useState()
+    const [count, setCount] = useState('')
+    const [defect, setDefect] = useState('')
 
     useEffect(() => {
         const id = window.location.pathname.split('/')[2]
@@ -60,10 +60,10 @@ export const HistoryDetail = (props) => {
                             onSubmit={e => handleSubmit(e)}>
                             <label style={{ marginBottom: '10px' }}>{process.product}, {process.status}</label>
                             <label style={{ marginBottom: '10px' }}>Сделано</label>
-                            <input type='number' value={count} onChange={e => setCount(e.target.value)}
+                            <input type='text' value={count} onChange={e => setCount(e.target.value)}
                                 placeholder='Количество сделано' />
                             <label style={{ marginBottom: '10px' }}>Брак</label>
-                            <input type='number' value={defect} onChange={e => setDefect(e.target.value)}
+                            <input type='text' value={defect} onChange={e => setDefect(e.target.value)}
                                 placeholder='Количество брак' />
                             <label style={{ marginBottom: '10px' }}>Дата формирования</label>
                             <input type="datetime-local" value={process.date} />

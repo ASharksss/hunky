@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 import { requestGetJob, requestAddJob } from '../actions/user';
 
 export const HomeDetail = () => {
-	const [count, setCount] = useState(0)
-	const [defect, setDefect] = useState(0)
+	const [count, setCount] = useState('')
+	const [defect, setDefect] = useState('')
 	const [detail, setDetail] = useState('')
 
 	const dispatch = useDispatch()
