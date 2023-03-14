@@ -454,7 +454,6 @@ td {
 
     tr {
         border-bottom: 1px solid #000;
-        margin-top: 5px;
         /* разделитель между группами данных */
     }
 
@@ -749,8 +748,6 @@ td {
 
 .history__btn {
     width: 47%;
-    margin: 5px;
-    padding: 3px;
     height: 30px;
     text-align: center;
     cursor: pointer;
