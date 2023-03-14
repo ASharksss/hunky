@@ -1,5 +1,6 @@
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import axios from "axios";
+import {REHYDRATE, PERSIST} from 'redux-persist'
 import {useSelector} from "react-redux";
 
 // Компоненты
@@ -21,7 +22,7 @@ import {AddUser} from "./components/admin/addUser";
 import {UsersDetail} from "./components/admin/UsersDetail";
 import {AdminReview} from "./components/admin/AdminReview";
 import {Auth} from "./components/Auth";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import { AdminProducts } from "./components/admin/AdminProducts";
 import { AddProduct } from "./components/admin/addProduct";
 import { AddJob } from "./components/admin/job/addJob";
@@ -31,11 +32,24 @@ axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
 
 function App() {
   const auth = useSelector(state => state.auth)
+  const [preload, setPreload] = useState(true)
   useEffect(() => {
+    setPreload(true)
+  }, [PERSIST])
+  useEffect(() => {
+    setPreload(false)
     if (auth.isAuth) {
       axios.defaults.headers.common = {'Authorization': `Bearer ${auth.token}`}
     }
-  }, [])
+  }, [REHYDRATE])
+  // useEffect(() => {
+  //   if (auth.isAuth) {
+  //     axios.defaults.headers.common = {'Authorization': `Bearer ${auth.token}`}
+  //   }
+  // }, [])
+  if (preload) {
+    return <p>Загрузка...</p>
+  }
   return (
     <BrowserRouter>
       <div className="App">
