@@ -44,7 +44,7 @@ export const AdminUsers = () => {
 										<td data-label="Пароль">{item.job_title}</td>
 										<td data-label="Деятельность">{item.role}</td>
 										<td data-label="Кнопки">
-											<NavLink to={'/admin/user/detail/' + item.id}>
+											<NavLink to={'/admin/user/detail/' + item.id} state={{uId: item.id}}>
 												<button className='user_btn'>Подробнее</button>
 											</NavLink>
 										</td>
