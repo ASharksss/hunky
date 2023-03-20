@@ -27,8 +27,10 @@ import { AdminProducts } from "./components/admin/AdminProducts";
 import { AddProduct } from "./components/admin/addProduct";
 import { AddJob } from "./components/admin/job/addJob";
 import { HistoryDetail } from "./components/HistoryDetail";
+import {UserSalary} from "./components/admin/UsersSalary";
 
-axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
+// axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
+axios.defaults.baseURL = 'http://localhost:5000/v1';
 
 function App() {
   const auth = useSelector(state => state.auth)
@@ -68,6 +70,7 @@ function App() {
               <Route path='/admin/product/add' element={<AddProduct/>}/>
               <Route path='/admin/user/detail/:id' element={<UsersDetail/>}/>
               <Route path='/history/:id' element={<HistoryDetail />}/>
+              <Route path='/user/salary/:id' element={<UserSalary />}/>
               <Route path='/admin/users/add' element={<AddUser/>}/>
               <Route path='/admin/users/review' element={<AdminReview/>}/>
               <Route path='/admin/stock/resume' element={<StockResume/>}/>

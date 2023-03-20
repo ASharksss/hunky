@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 import { requestProfile } from '../actions/user';
 
 export const Profile = () => {
-  const {profile, profile_defect, profile_cancel} = useSelector(state => state.user)
+  const {profile, profile_defect, profile_cancel, profile_salary} = useSelector(state => state.user)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(requestProfile())
@@ -38,12 +38,13 @@ export const Profile = () => {
               </div>
             </NavLink>
 
-            <NavLink to='/profile/salary' className='link result__block'>
+            {/*<NavLink to='/profile/salary' className='link result__block'>*/}
+            <NavLink to='#' className='link result__block'>
               <div>
                 <h2 className="result_title">
                   Моя зарплата
                 </h2>
-                <h3 className='result_count'>скоро</h3>
+                <h3 className='result_count'>{profile_salary.salary}</h3>
               </div>
             </NavLink>
           </div>

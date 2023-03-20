@@ -18,6 +18,7 @@ const initialState = {
 	proces: [],
 	history_pages: 0,
 	profile: [],
+	profile_salary: [],
 	profile_defects: [],
 	profile_canceled: [],
 	profile_defect: 0,
@@ -36,6 +37,7 @@ export default function authReduce(state = initialState, action) {
 			return {
 				...state,
 				profile: action.payload.user,
+				profile_salary: action.payload.salary,
 				profile_cancel: action.payload.cancel,
 				profile_defect: action.payload.defect
 			}

@@ -59,7 +59,8 @@ export const DefectDetail = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{filteredData.map(item => {
+							{defects.length !== 0 ?
+								filteredData.map(item => {
 									return (
 										<tr>
 											<td data-label="Продукт">{item.process.product}</td>
@@ -68,7 +69,7 @@ export const DefectDetail = () => {
 											<td data-label="Дата добавления">{item.process.date}</td>
 										</tr>
 									)
-								})}
+								}) : <tr>У Вас нет брака</tr>}
 							</tbody>
 						</table>
 					</div>

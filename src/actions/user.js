@@ -163,7 +163,8 @@ export const requestProfile = () => {
 					const data = {
 						user: response.data.user,
 						cancel: response.data.cancel,
-						defect: response.data.defect
+						defect: response.data.defect,
+						salary: response.data.salary
 					}
 					dispatch(profile(data))
 				} else {

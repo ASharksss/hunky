@@ -60,7 +60,7 @@ export const CancelDetail = () => {
 												<td data-label="Дата добавления">{item.process.date}</td>
 											</tr>
 										)
-									}) : <tr>У Вас нет браков</tr>}
+									}) : <tr>У Вас нет отмененных задач</tr>}
 							</tbody>
 						</table>
 					</div>

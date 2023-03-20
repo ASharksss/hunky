@@ -216,21 +216,20 @@ body {
 
 @media (max-width: 500px) {
     .footer .footer__button {
-        width: 80px;
+        width: 70px;
     }
 
     .footer_icon {
-        width: 28px;
+        width: 24px;
     }
 }
 
 @media (max-width: 420px) {
     .footer .footer__button {
-        width: 80px;
+        width: 58px;
     }
-
     .footer_icon {
-        width: 28px;
+        width: 25px;
     }
 }
 
@@ -306,7 +305,9 @@ body {
 
 .detail__wrapper {
     width: 60%;
-    margin: 0 auto;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 100px;
     font-size: 22px;
 }
 
@@ -454,6 +455,7 @@ td {
 
     tr {
         border-bottom: 1px solid #000;
+        margin-bottom: 10px;
         /* разделитель между группами данных */
     }
 
@@ -553,6 +555,12 @@ td {
     font-size: 16px;
     border: none;
     cursor: pointer;
+}
+
+.review_text{
+    resize: none;
+    width: 100%;
+    height: 150px;
 }
 
 .review_button:hover {
@@ -735,6 +743,13 @@ td {
 .salary_container {
     margin-top: 10%;
     text-align: center;
+}
+
+.salary_chart {
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 /* END PROFILE */
