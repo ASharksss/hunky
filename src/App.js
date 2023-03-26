@@ -32,8 +32,8 @@ import { JobCost } from "./components/admin/JobCost";
 import { ShippedProducts } from "./components/admin/ShippedProducts";
 import { SendProducts } from "./components/SendProducts";
 
-// axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
-axios.defaults.baseURL = 'http://localhost:5000/v1';
+axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
+// axios.defaults.baseURL = 'http://localhost:5000/v1';
 
 function App() {
   const auth = useSelector(state => state.auth)
