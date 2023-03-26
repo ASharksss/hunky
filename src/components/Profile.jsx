@@ -44,7 +44,7 @@ export const Profile = () => {
                 <h2 className="result_title">
                   Моя зарплата
                 </h2>
-                <h3 className='result_count'>{profile_salary.salary}</h3>
+                <h3 className='result_count'>{profile_salary.salary} ₽</h3>
               </div>
             </NavLink>
           </div>

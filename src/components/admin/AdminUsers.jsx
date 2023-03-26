@@ -51,7 +51,7 @@ export const AdminUsers = () => {
                                                         <button className='user_btn'>Подробнее</button>
                                                     </NavLink>
                                                     <NavLink to={'/user/salary/' + item.id}
-                                                             state={{uId: item.id}}>
+                                                             state={{uId: item.id, fio: item.name}}>
                                                         <button style={{marginTop: '5px'}} className='user_btn'>Оплата</button>
                                                     </NavLink>
                                                 </>

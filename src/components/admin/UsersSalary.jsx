@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {NavLink, useLocation} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import axios from "axios";
 
 export const UserSalary = () => {
@@ -9,8 +9,15 @@ export const UserSalary = () => {
     const [error, setError] = useState('')
     const [data, setData] = useState([])
     const [sum, setSum] = useState('')
+    const [name, setName] = useState('')
     const location = useLocation()
-    const {state} = location
+    const { state } = location
+
+    useEffect(() => {
+        if (name == '') {
+            setName(state.fio)
+        }
+    }, [])
 
     useEffect(() => {
         setPreload(true)
@@ -34,44 +41,50 @@ export const UserSalary = () => {
     }, [firstDate, lastDate])
 
     return (
-        <div className='salary'>
+        <div className='user_detail'>
             <div className="container">
-                <div className="salary_container">
+                <div className="user_detail_container">
                     <div className="salary_choice-date">
-                        <input type="date" value={firstDate} onChange={e => setFirstDate(e.target.value)}/>
-                        <input type="date" value={lastDate} onChange={e => setLastDate(e.target.value)}/>
-                        <button onClick={() => {
-                            setFirstDate('')
-                            setLastDate('')
-                        }}>Очистить
-                        </button>
-                    </div>
-                    <p>Общая сумма {!preload && error ? '' : sum} ₽</p>
-                    <div className="salary_chart">
-                        {!preload ? error ?
-                                <p>{error}</p> :
-                                <table>
-                                    <thead>
+                        <h1>{name}</h1>
+                        <div className="user_filters">
+                            <input type="date" value={firstDate} onChange={e => setFirstDate(e.target.value)} />
+                            <input type="date" value={lastDate} onChange={e => setLastDate(e.target.value)} />
+                            <button className='stock_btn' onClick={() => {
+                                setFirstDate('')
+                                setLastDate('')
+                            }}>Очистить
+                            </button>
+                        </div>
+                        <div className="user_detail_block">
+                            <h2>Сделано: {!preload && error ? '' : sum.count + ' шт.'}</h2>
+                            <h2>Общая стоимость: {!preload && error ? '' : sum.price + ' ₽'}</h2>
+                            {!preload ? error ?
+                            <p>{error}</p> :
+                            <table>
+                                <thead>
                                     <tr>
                                         <th>Дата</th>
                                         <th>Продукт</th>
                                         <th>Тип</th>
-                                        <th>Оплата</th>
+                                        <th>Сделано</th>
+                                        <th>Стоимость</th>
                                     </tr>
-                                    </thead>
-                                    <tbody>
+                                </thead>
+                                <tbody>
                                     {data.map(item => (
                                         <tr key={item.id}>
                                             <td data-label="Дата">{item.date}</td>
                                             <td data-label="Продукт">{item.product}</td>
                                             <td data-label="Тип">{item.info}</td>
-                                            <td data-label="Оплата">{item.price} ₽</td>
+                                            <td data-label="Сделано">{item.count} шт.</td>
+                                            <td data-label="Стоимость">{item.price} ₽</td>
                                         </tr>
                                     ))}
-                                    </tbody>
-                                </table>
+                                </tbody>
+                            </table>
                             :
                             <p>Загрузка данных</p>}
+                        </div>
                     </div>
                 </div>
             </div>

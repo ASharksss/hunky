@@ -19,14 +19,19 @@ export const AdminProducts = () => {
 							Добавить товар
 						</button>
 					</NavLink>
-					<NavLink to={'/admin/job/add'} className='users_resume'>
+					{/* <NavLink to={'/admin/job/add'} className='users_resume'>
 						<button className='add_user'>
 							Создать работу
 						</button>
-					</NavLink>
+					</NavLink> */}
 					<NavLink to='review' className='users_resume'>
 						<button className='add_user'>
 							Назначить работу
+						</button>
+					</NavLink>
+					<NavLink to='cost' className='users_resume'>
+						<button className='add_user'>
+							Выставить цену
 						</button>
 					</NavLink>
 					<div className="history__table">

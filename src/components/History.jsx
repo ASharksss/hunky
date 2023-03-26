@@ -55,7 +55,6 @@ export const History = () => {
                   <th>Сделано</th>
                   <th>Брак</th>
                   <th>Дата добавления</th>
-                  <th>Кнопки</th>
                 </tr>
               </thead>
               <tbody>
