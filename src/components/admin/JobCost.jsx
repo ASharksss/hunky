@@ -98,7 +98,7 @@ export const JobCost = () => {
                                 {oldCost[0] !== undefined ?
                                     <p>Старая цена: {oldCost[0].price} ₽/шт.</p>
                                     : ''}
-                                <input required type="number" placeholder='Введите количество' value={price}
+                                <input required type="number" placeholder='Введите цену' value={price}
                                     onChange={e => setPrice(e.target.value)} className='resume_input' />
                                 <div className="link resume_stock_link">
                                     <button type='submit' className="resume_stock_submit">{oldCost[0] !== undefined ? 'Изменить': 'Добавить'}</button>

@@ -38,6 +38,9 @@ export const AdminStock = () => {
 								<NavLink to='/admin/stock/resume' className='link'>
 									<button className='stock_btn'>Пополнить</button>
 								</NavLink>
+								<NavLink to='/admin/stock/shipped' className='link'>
+									<button className='stock_btn'>Отправленные</button>
+								</NavLink>
 							</div>
 							<div className="stock_list">
 								<table>
