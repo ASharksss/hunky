@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { requestStockList, requestStockSearch } from '../actions/stock';
 
 export const Stock = () => {
   const dispatch = useDispatch()
   const stock = useSelector(state => state.stock.data)
-  const profile = useSelector(state => state.user.profile)
   const [data, setData] = useState(stock)
   const [search, setSearch] = useState('')
 
@@ -44,10 +42,6 @@ export const Stock = () => {
               <option value='1'>Расходники</option>
               <option value='2'>Рыбки</option>
             </select>
-            {profile.role == 'Сборщик' &&
-              <NavLink to='/stock/shipped' className='link'>
-                <button className='stock_btn'>Отправить</button>
-              </NavLink>}
           </div>
           <table>
             <thead>

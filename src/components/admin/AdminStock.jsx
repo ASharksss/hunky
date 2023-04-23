@@ -7,16 +7,17 @@ export const AdminStock = () => {
 	const [stockVal, setStockVal] = useState(0)
 	const dispatch = useDispatch()
 	const stock = useSelector(state => state.admin.stock)
-  	const [data, setData] = useState(stock)
+	const auth = useSelector(state => state.auth)
+	const [data, setData] = useState(stock)
 	useEffect(() => {
 		dispatch(requestHistory())
 	}, [])
 	useEffect(() => {
 		const array = stock
-		array.sort(function(a, b){
-		    if(a.product < b.product) { return -1; }
-		    if(a.product > b.product) { return 1; }
-		    return 0;
+		array.sort(function (a, b) {
+			if (a.product < b.product) { return -1; }
+			if (a.product > b.product) { return 1; }
+			return 0;
 		})
 		setData(array)
 	}, [stock])
@@ -35,12 +36,15 @@ export const AdminStock = () => {
 						<div className="stock_block">
 							<div className="stock_title">
 								<h1>Расходники</h1>
-								<NavLink to='/admin/stock/resume' className='link'>
-									<button className='stock_btn'>Пополнить</button>
-								</NavLink>
-								<NavLink to='/admin/stock/shipped' className='link'>
-									<button className='stock_btn'>Отправленные</button>
-								</NavLink>
+								{auth.isAuth & auth.role === 'Администратор' ?
+									<>
+										<NavLink to='/admin/stock/resume' className='link'>
+											<button className='stock_btn'>Пополнить</button>
+										</NavLink>
+										<NavLink to='/admin/stock/shipped' className='link'>
+											<button className='stock_btn'>Отправленные</button>
+										</NavLink>
+									</>: ''}
 							</div>
 							<div className="stock_list">
 								<table>

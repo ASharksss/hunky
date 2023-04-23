@@ -79,6 +79,7 @@ function App() {
               <Route path='/admin/products/cost' element={<JobCost/>}/>
               <Route path='/admin/stock/resume' element={<StockResume/>}/>
               <Route path='/admin/stock/shipped' element={<ShippedProducts/>}/>
+              <Route path='/admin/stock/sendShipped' element={<SendProducts/>}/>
             </Route>
           }
           {auth.isAuth & auth.role !== 'Администратор' &&
@@ -86,7 +87,6 @@ function App() {
               <Route index element={<Home/>}/>
               <Route path='/product/:id' element={<HomeDetail/>}/>
               <Route path='/stock' element={<Stock/>}/>
-              <Route path='/stock/shipped' element={<SendProducts/>}/>
               <Route path='/history' element={<History/>}/>
               <Route path='/profile' element={<Profile/>}/>
               <Route path='/profile/review' element={<Review/>}/>

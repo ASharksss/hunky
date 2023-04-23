@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 export const ShippedProducts = () => {
@@ -27,6 +28,9 @@ export const ShippedProducts = () => {
             <div className="container">
                 <div className="users_container">
                     <h1 className='admin_user_title'>Отправленные товары</h1>
+                    <NavLink to='/admin/stock/sendShipped' className='link'>
+                        <button className='stock_btn'>Отправить</button>
+                    </NavLink>
                     <div className="history__table">
                         {preloader ? 'Загрузка...' :
                             <table>
