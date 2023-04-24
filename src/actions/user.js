@@ -59,10 +59,9 @@ export const requestAddJob = (data) => {
 					alert('Задача добавлена')
 					window.location.reload()
 				} else {
-					dispatch(failed(response.data.message))
+					dispatch(failed(response.data))
 				}
 			})
-			console.log(data)
 		} catch (e) {
 			dispatch(failed("Неизвестная ошибка"))
 		}

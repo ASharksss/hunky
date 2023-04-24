@@ -35,6 +35,25 @@ export const HomeDetail = () => {
 			alert('Не все поля заполнены')
 		}
 	}
+
+	const errorDetails = () => {
+		const values = error.consum.reduce((acc, obj) => {
+			Object.keys(obj).forEach(key => {
+				if (!acc[key]) {
+					acc[key] = [];
+				}
+				acc[key].push(obj[key]);
+			});
+			return acc;
+		}, {});
+		const array = error.array.map(obj => obj['product'])
+		console.log()
+		Object.keys(values).filter(x => {
+			if(array.includes(x)) {
+				return <span>{x}</span>
+			}
+		})
+	}
 	if (job.length !== 0) {
 		return (
 			<div className='home_detail'>
@@ -65,7 +84,8 @@ export const HomeDetail = () => {
 								</button>
 							</div>
 
-							{error ? <p className="error">{error}</p> : ''}
+							{error.message ? <p className="error">{error.message}</p> : ''}
+							{error.message ? <p className="error">{errorDetails()}</p> : ''}
 						</form>
 					</div>
 				</div>
