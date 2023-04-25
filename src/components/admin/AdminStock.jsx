@@ -29,8 +29,9 @@ export const AdminStock = () => {
 						<option value='0' defaultValue>Все</option>
 						<option value='1'>Расходники</option>
 						<option value='2'>Сформированные</option>
+						<option value='5'>Очищенные</option>
 						<option value='3'>Покрашенные</option>
-						<option value='4'>Собранные</option>
+						<option value='4'>Собранные</option>						 
 					</select>
 					{stockVal == '0' | stockVal == '1' ?
 						<div className="stock_block">
@@ -85,6 +86,34 @@ export const AdminStock = () => {
 									<tbody>
 										{data.map(item => {
 											if (item.type_id == 2) {
+												return (
+													<tr>
+														<td data-label="Продукт">{item.product}</td>
+														<td data-label="Тип">{item.volume}</td>
+														<td data-label="Количество">{item.count}</td>
+													</tr>
+												)
+											}
+										})}
+									</tbody>
+								</table>
+							</div>
+						</div> : ''}
+					{stockVal == '0' | stockVal == '5' ?
+						<div className="stock_block">
+							<h1>Очищенные</h1>
+							<div className="stock_list">
+								<table>
+									<thead>
+										<tr>
+											<th>Продукт</th>
+											<th>Тип</th>
+											<th>Количество</th>
+										</tr>
+									</thead>
+									<tbody>
+										{data.map(item => {
+											if (item.type_id == 5) {
 												return (
 													<tr>
 														<td data-label="Продукт">{item.product}</td>

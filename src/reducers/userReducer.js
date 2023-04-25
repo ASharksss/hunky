@@ -7,6 +7,7 @@ const JOB_LIST = 'JOB_LIST'
 const GET_JOB = 'GET_JOB'
 const UPDATE_PROCESS = 'UPDATE_PROCESS'
 const GET_HISTORY = 'GET_HISTORY'
+const PRELOADER = 'PRELOADER'
 
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
 	job: [],
 	history: [],
 	proces: [],
+	notification: [],
 	history_pages: 0,
 	profile: [],
 	profile_salary: [],
@@ -51,7 +53,8 @@ export default function authReduce(state = initialState, action) {
 		case JOB_LIST:
 			return {
 				...state,
-				jobs: action.payload,
+				jobs: action.payload.jobs,
+				notification: action.payload.notification,
 				error: ''
 			}
 		case UPDATE_PROCESS:
@@ -85,12 +88,18 @@ export default function authReduce(state = initialState, action) {
 				history_pages: action.payload.pages,
 				error: ''
 			}
+		case PRELOADER:
+			return {
+				...state,
+				preloader: action.payload
+			}
 		default:
 			return state
 	}
 }
 
 export const user_list = data => ({ type: USER_LIST, payload: data })
+export const preloader = data => ({ type: PRELOADER, payload: data })
 export const job_list = data => ({ type: JOB_LIST, payload: data })
 export const history = data => ({ type: GET_HISTORY, payload: data })
 export const profile = data => ({ type: USER_PROFILE, payload: data })

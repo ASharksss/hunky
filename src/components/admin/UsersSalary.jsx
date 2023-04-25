@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { FcLike } from 'react-icons/fc'
 import axios from "axios";
 
 export const UserSalary = () => {
@@ -68,6 +69,7 @@ export const UserSalary = () => {
                                         <th>Тип</th>
                                         <th>Сделано</th>
                                         <th>Стоимость</th>
+                                        <th>Голография</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,6 +80,7 @@ export const UserSalary = () => {
                                             <td data-label="Тип">{item.info}</td>
                                             <td data-label="Сделано">{item.count} шт.</td>
                                             <td data-label="Стоимость">{item.price} ₽</td>
+                                            <td>{item.is_holography == true ? <FcLike /> : ''}</td>
                                         </tr>
                                     ))}
                                 </tbody>

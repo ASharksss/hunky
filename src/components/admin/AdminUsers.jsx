@@ -6,6 +6,7 @@ import { requestUserList } from "../../actions/user";
 export const AdminUsers = () => {
     const dispatch = useDispatch()
     const auth = useSelector(state => state.auth)
+    const current_user = useSelector(state => state.auth.user)
     useEffect(() => {
         dispatch(requestUserList())
     }, [])
@@ -26,7 +27,14 @@ export const AdminUsers = () => {
                                 <button className='add_user'>
                                     Отзывы и предложения
                                 </button>
-                            </NavLink> </> : ''}
+                            </NavLink>
+                            {current_user.name === 'Алсу' ?
+                            <NavLink to='/admin/notification' className='users_resume'>
+                                <button className='add_user'>
+                                    Создать уведомление
+                                </button>
+                            </NavLink> : ''}
+                            </> : ''}
                     <div className="history__table">
                         <table>
                             <thead>

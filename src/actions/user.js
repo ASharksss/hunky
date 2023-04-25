@@ -34,7 +34,7 @@ export const requestJobList = () => {
 				url: '/job/'
 			}).then(response => {
 				if (response.data.server_status == 1) {
-					dispatch(job_list(response.data.jobs))
+					dispatch(job_list(response.data))
 				} else {
 					dispatch(failed('Произошла ошибка в обработке'))
 				}

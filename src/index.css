@@ -1142,3 +1142,23 @@ td {
     border-radius: 10px;
 }
 /* END ADMIN */
+
+.notification {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.notification > .close-btn {
+    float: right;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.notification > .close-btn:hover {
+    background-color: #d32f2f;
+}

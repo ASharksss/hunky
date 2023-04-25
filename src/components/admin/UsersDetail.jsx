@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink, useLocation} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import { FcLike } from 'react-icons/fc'
 import {requestUserInfo, requestDeleteProcess} from '../../actions/admin';
 
 const id = window.location.pathname.split('/')[4]
@@ -81,6 +82,7 @@ export const UsersDetail = () => {
                   <th>Продукт</th>
                   <th>Тип</th>
                   <th>Сделано</th>
+                  <th>Голография</th>
                   <th>Дата добавления</th>
                   <th>Действия</th>
                 </tr>
@@ -92,6 +94,7 @@ export const UsersDetail = () => {
                       <td data-label="Продукт">{item.process.product}</td>
                       <td data-label="Тип">{item.info}</td>
                       <td data-label="Сделано">{item.process.count}</td>
+                      <td>{item.process.is_holography == true ? <FcLike /> : ''}</td>
                       <td data-label="Дата добавления">{item.process.date}</td>
                       {item.process.remove ?
                         <td data-label="Кнопки">

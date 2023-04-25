@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
 import { requestGetJob, requestAddJob } from '../actions/user';
 
 export const HomeDetail = () => {
 	const [count, setCount] = useState('')
 	const [defect, setDefect] = useState('')
 	const [detail, setDetail] = useState('')
+	const [isHolography, setIsHolography] = useState(false)
 
 	const dispatch = useDispatch()
 	const job = useSelector(state => state.user.job)
 	const error = useSelector(state => state.user.error)
+	const auth = useSelector(state => state.auth)
 	useEffect(() => {
 		const id = window.location.pathname.split('/')[2]
 		dispatch(requestGetJob(id))
@@ -21,7 +22,8 @@ export const HomeDetail = () => {
 			'name': job.name,
 			'type': detail,
 			'count': count,
-			'defect': defect
+			'defect': defect,
+			'is_holography': isHolography
 		}
 		if (detail) {
 			if (count > 0) {
@@ -47,12 +49,8 @@ export const HomeDetail = () => {
 			return acc;
 		}, {});
 		const array = error.array.map(obj => obj['product'])
-		console.log()
-		Object.keys(values).filter(x => {
-			if(array.includes(x)) {
-				return <span>{x}</span>
-			}
-		})
+		const filtered = Object.keys(values).filter(x => !array.includes(x))
+		return filtered.map(item => <span>{item}</span>)
 	}
 	if (job.length !== 0) {
 		return (
@@ -77,15 +75,19 @@ export const HomeDetail = () => {
 								placeholder='Количество сделано' />
 							<input type='number' value={defect} onChange={e => setDefect(e.target.value)}
 								placeholder='Количество брак' />
-
+							{auth.role === 'Маляр' & job.name.split(', ')[1] === 'Покраска' ?
+								<div style={{display: 'flex'}}>
+									<input type="checkbox" onChange={() => setIsHolography(prev => !prev)} id="holography" name="holography" checked={isHolography} />
+									<label for="holography">Голографический</label>
+								</div> : ''
+							}
 							<div className="detail_btns">
 								<button type='submit' className='detail_btn'>
 									Сохранить
 								</button>
 							</div>
-
 							{error.message ? <p className="error">{error.message}</p> : ''}
-							{error.message ? <p className="error">{errorDetails()}</p> : ''}
+							{error.message ? <p style={{ display: 'flex', flexDirection: 'column' }}>{errorDetails()}</p> : ''}
 						</form>
 					</div>
 				</div>
