@@ -29,12 +29,12 @@ export const AdminUsers = () => {
                                 </button>
                             </NavLink>
                             {current_user.name === 'Алсу' ?
-                            <NavLink to='/admin/notification' className='users_resume'>
-                                <button className='add_user'>
-                                    Создать уведомление
-                                </button>
-                            </NavLink> : ''}
-                            </> : ''}
+                                <NavLink to='/admin/notification' className='users_resume'>
+                                    <button className='add_user'>
+                                        Создать уведомление
+                                    </button>
+                                </NavLink> : ''}
+                        </> : ''}
                     <div className="history__table">
                         <table>
                             <thead>
@@ -60,12 +60,11 @@ export const AdminUsers = () => {
                                                         <NavLink to={'/admin/user/detail/' + item.id}
                                                             state={{ uId: item.id }}>
                                                             <button className='user_btn'>Подробнее</button>
-                                                        </NavLink> 
-                                                        {auth.isAuth & auth.role === 'Администратор' ?
-                                                            <NavLink to={'/user/salary/' + item.id}
-                                                                state={{ uId: item.id, fio: item.name }}>
-                                                                <button style={{ marginTop: '5px' }} className='user_btn'>Оплата</button>
-                                                            </NavLink> : ''}
+                                                        </NavLink>
+                                                        <NavLink to={'/user/salary/' + item.id}
+                                                            state={{ uId: item.id, fio: item.name }}>
+                                                            <button style={{ marginTop: '5px' }} className='user_btn'>Оплата</button>
+                                                        </NavLink>
                                                     </>
                                                     :
                                                     <NavLink to={'/admin/user/detail/' + item.id} state={{ uId: item.id }}>

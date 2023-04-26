@@ -33,7 +33,8 @@ import { ShippedProducts } from "./components/admin/ShippedProducts";
 import { SendProducts } from "./components/SendProducts";
 import { Notification } from "./components/admin/Notification";
 
-axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
+// axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
+axios.defaults.baseURL = 'https://test.vodenoi.shop/v1';
 // axios.defaults.baseURL = 'http://localhost:5000/v1';
 
 function App() {
@@ -88,6 +89,8 @@ function App() {
             <Route path='/' element={<AdminLayout />}>
               <Route index element={<AdminStock />} />
               <Route path='/admin/users' element={<AdminUsers />} />
+              <Route path='/admin/user/detail/:id' element={<UsersDetail />} />
+              <Route path='/user/salary/:id' element={<UserSalary />} />
             </Route>
           }
           {auth.isAuth & auth.role !== 'Администратор' &&
