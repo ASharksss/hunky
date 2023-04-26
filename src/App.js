@@ -91,6 +91,7 @@ function App() {
               <Route path='/admin/users' element={<AdminUsers />} />
               <Route path='/admin/user/detail/:id' element={<UsersDetail />} />
               <Route path='/user/salary/:id' element={<UserSalary />} />
+              <Route path='/admin/stock/shipped' element={<ShippedProducts />} />
             </Route>
           }
           {auth.isAuth & auth.role !== 'Администратор' &&
