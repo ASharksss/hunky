@@ -49,30 +49,23 @@ export const AdminUsers = () => {
                             <tbody>
                                 {user.map(item => {
                                     return (
-                                        <tr key={item.id}>
-                                            <td data-label="Пользователь">{item.name}</td>
-                                            <td data-label="Логин">{item.username}</td>
-                                            <td data-label="Пароль">{item.job_title}</td>
-                                            <td data-label="Деятельность">{item.role}</td>
-                                            <td data-label="Кнопки">
-                                                {item.role == 'Маляр' ?
-                                                    <>
-                                                        <NavLink to={'/admin/user/detail/' + item.id}
-                                                            state={{ uId: item.id }}>
-                                                            <button className='user_btn'>Подробнее</button>
-                                                        </NavLink>
-                                                        <NavLink to={'/user/salary/' + item.id}
-                                                            state={{ uId: item.id, fio: item.name }}>
-                                                            <button style={{ marginTop: '5px' }} className='user_btn'>Оплата</button>
-                                                        </NavLink>
-                                                    </>
-                                                    :
-                                                    <NavLink to={'/admin/user/detail/' + item.id} state={{ uId: item.id }}>
+                                        item.role !== 'Администратор' && item.role !== 'Зритель' ?
+                                            <tr key={item.id}>
+                                                <td data-label="Пользователь">{item.name}</td>
+                                                <td data-label="Логин">{item.username}</td>
+                                                <td data-label="Пароль">{item.job_title}</td>
+                                                <td data-label="Деятельность">{item.role}</td>
+                                                <td data-label="Кнопки">
+                                                    <NavLink to={'/admin/user/detail/' + item.id}
+                                                        state={{ uId: item.id }}>
                                                         <button className='user_btn'>Подробнее</button>
                                                     </NavLink>
-                                                }
-                                            </td>
-                                        </tr>
+                                                    <NavLink to={'/user/salary/' + item.id}
+                                                        state={{ uId: item.id, fio: item.name }}>
+                                                        <button style={{ marginTop: '5px' }} className='user_btn'>Оплата</button>
+                                                    </NavLink>
+                                                </td>
+                                            </tr> : ''
                                     )
                                 })}
                             </tbody>
