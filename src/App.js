@@ -33,8 +33,7 @@ import { ShippedProducts } from "./components/admin/ShippedProducts";
 import { SendProducts } from "./components/SendProducts";
 import { Notification } from "./components/admin/Notification";
 
-// axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
-axios.defaults.baseURL = 'https://test.vodenoi.shop/v1';
+axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
 // axios.defaults.baseURL = 'http://localhost:5000/v1';
 
 function App() {
