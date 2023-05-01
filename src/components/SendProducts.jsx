@@ -5,15 +5,18 @@ import axios from 'axios';
 export const SendProducts = () => {
     const navigate = useNavigate()
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
     const [pCount, setPCount] = useState(undefined)
     const [pId, setPId] = useState(0)
     const [count, setCount] = useState('')
     const [address, setAddress] = useState('')
     useEffect(() => {
+        setLoading(true)
         axios.get('/user/send/products')
             .then(res => {
                 if (res.data.server_status == 1) {
                     setData(res.data.stock)
+                    setLoading(false)
                 } else {
                     alert('Ошибка обработки данных')
                     console.log(res)
@@ -50,7 +53,7 @@ export const SendProducts = () => {
                 <div className="resume_container">
                     <form className='resume_form' onSubmit={e => handleSubmit(e)}>
                         <h2 className='resume_stock_title'>Отправка заказа</h2>
-                        {data.length == 0 ? 'load...' :
+                        {loading ? 'load...' :
                             <>
                                 <select required onChange={e => {
                                     setPId(e.target.value)
@@ -77,7 +80,7 @@ export const SendProducts = () => {
                                 </div>
                             </>}
                     </form>
-                    {data.length == 0 ? "" :
+                    {loading ? "" :
                         <div className="stock_list">
                             <table>
                                 <thead>
