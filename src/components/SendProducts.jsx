@@ -27,8 +27,8 @@ export const SendProducts = () => {
     function handleSubmit(e) {
         e.preventDefault()
         const data = {
-            p_name: pId.split('-')[0],
-            info: pId.split('-')[1],
+            p_name: pId.split(',')[0],
+            info: pId.split(',')[1],
             count: count,
             address: address
         }
@@ -57,13 +57,13 @@ export const SendProducts = () => {
                             <>
                                 <select required onChange={e => {
                                     setPId(e.target.value)
-                                    setPCount(data.find(x => x.product == e.target.value.split('-')[0] && x.volume == e.target.value.split('-')[1]))
+                                    setPCount(data.find(x => x.product == e.target.value.split(',')[0] && x.volume == e.target.value.split(',')[1]))
                                 }} className='resume_input' >
                                     <option defaultChecked hidden>Выберите товар</option>
                                     {data.map(item => {
                                         return (
                                             <option key={item.product + item.volume}
-                                                value={item.product + '-' + item.volume}>
+                                                value={item.product + ',' + item.volume}>
                                                 {item.product} - {item.volume}</option>
                                         )
                                     })}
