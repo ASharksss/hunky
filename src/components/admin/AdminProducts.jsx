@@ -37,20 +37,20 @@ export const AdminProducts = () => {
 					<div className="history__table">
 						<table>
 							<thead>
-								<tr>
-									<th>Название</th>
-									<th>Категория</th>
-								</tr>
+							<tr>
+								<th>Название</th>
+								<th>Категория</th>
+							</tr>
 							</thead>
 							<tbody>
-								{products.map(item => {
-									return(
-										<tr>
+							{products.map(item => {
+								return(
+									<tr>
 										<td data-label="Название">{item.name}</td>
-										<td data-label="Категория">{item.category}</td>											
-										</tr>
-									)
-								})}
+										<td data-label="Категория">{item.category}</td>
+									</tr>
+								)
+							})}
 							</tbody>
 						</table>
 					</div>

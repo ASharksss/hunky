@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { REHYDRATE, PERSIST } from 'redux-persist'
@@ -22,7 +23,6 @@ import { AddUser } from "./components/admin/addUser";
 import { UsersDetail } from "./components/admin/UsersDetail";
 import { AdminReview } from "./components/admin/AdminReview";
 import { Auth } from "./components/Auth";
-import { useEffect, useState } from "react";
 import { AdminProducts } from "./components/admin/AdminProducts";
 import { AddProduct } from "./components/admin/addProduct";
 import { AddJob } from "./components/admin/job/addJob";
@@ -32,6 +32,8 @@ import { JobCost } from "./components/admin/JobCost";
 import { ShippedProducts } from "./components/admin/ShippedProducts";
 import { SendProducts } from "./components/SendProducts";
 import { Notification } from "./components/admin/Notification";
+import { AdminStockAccepted } from "./components/admin/AdminStockAccepted";
+import {StockResumeAccepted} from "./components/admin/StockResumeAccepted";
 
 axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
 // axios.defaults.baseURL = 'http://localhost:5000/v1';
@@ -79,9 +81,11 @@ function App() {
               <Route path='/admin/users/review' element={<AdminReview />} />
               <Route path='/admin/products/cost' element={<JobCost />} />
               <Route path='/admin/stock/resume' element={<StockResume />} />
+              <Route path='/admin/stock/accepted/resume' element={<StockResumeAccepted />} />
               <Route path='/admin/stock/shipped' element={<ShippedProducts />} />
               <Route path='/admin/stock/sendShipped' element={<SendProducts />} />
               <Route path='/admin/notification' element={<Notification />} />
+              <Route path='/admin/stock/accepted' element={<AdminStockAccepted />} />
             </Route>
           }
           {auth.isAuth & auth.role === 'Зритель' &&
