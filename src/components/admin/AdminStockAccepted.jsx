@@ -34,6 +34,9 @@ export const AdminStockAccepted = () => {
                             <h1>Склад АйМаНи</h1>
                             <NavLink to='/admin/stock/accepted/resume' className='link'>
                                 <button className='stock_btn'>Отметить приход</button>
+                                <NavLink to='/admin/stock/shipped' className='link'>
+                                    <button className='stock_btn'>Заказы</button>
+                                </NavLink>
                             </NavLink>
                         </div>
                         <div className="stock_list">
