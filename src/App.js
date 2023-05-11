@@ -35,8 +35,9 @@ import { Notification } from "./components/admin/Notification";
 import { AdminStockAccepted } from "./components/admin/AdminStockAccepted";
 import {StockResumeAccepted} from "./components/admin/StockResumeAccepted";
 
-axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
-// axios.defaults.baseURL = 'http://localhost:5000/v1';
+/*axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';*/
+axios.defaults.baseURL = 'https://test.vodenoi.shop/v1';
+/*axios.defaults.baseURL = 'http://localhost:5000/v1';*/
 
 function App() {
   const auth = useSelector(state => state.auth)

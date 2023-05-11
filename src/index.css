@@ -1014,9 +1014,9 @@ td {
 
 
 .stock_btn {
-    width: 120px;
-    height: 30px;
+
     margin-left: 10px;
+    padding: 10px;
     text-align: center;
     cursor: pointer;
     border: none;
@@ -1161,4 +1161,8 @@ td {
 
 .notification > .close-btn:hover {
     background-color: #d32f2f;
+}
+
+.stock_btn {
+
 }

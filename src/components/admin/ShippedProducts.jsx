@@ -29,10 +29,10 @@ export const ShippedProducts = () => {
         <div className='admin_users'>
             <div className="container">
                 <div className="users_container">
-                    <h1 className='admin_user_title'>Отправленные товары</h1>
+                    <h1 className='admin_user_title'>Заказы</h1>
                     {auth.isAuth & auth.role === 'Администратор' ?
                         <NavLink to='/admin/stock/sendShipped' className='link'>
-                            <button className='stock_btn'>Отправить</button>
+                            <button className='stock_btn'>Оформить заказ</button>
                         </NavLink> : ''}
                     <div className="history__table">
                         {preloader ? 'Загрузка...' :

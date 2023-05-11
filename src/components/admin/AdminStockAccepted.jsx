@@ -31,9 +31,9 @@ export const AdminStockAccepted = () => {
                 <div className="admin_stock_container">
                     <div className="stock_block">
                         <div className="stock_title">
-                            <h1>Расходники</h1>
+                            <h1>Склад АйМаНи</h1>
                             <NavLink to='/admin/stock/accepted/resume' className='link'>
-                                <button className='stock_btn'>Добавить</button>
+                                <button className='stock_btn'>Отметить приход</button>
                             </NavLink>
                         </div>
                         <div className="stock_list">
