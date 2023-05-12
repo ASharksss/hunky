@@ -35,7 +35,7 @@ export const AdminStockAccepted = () => {
                             <h1>Склад АйМаНи</h1>
                             {auth.user.name === 'Алсу' ?
                                 <NavLink to='/busya/stock/accepted' className='link'>
-                                    <button className='stock_btn'>Отметить приход (Busya)</button>
+                                    <button className='stock_btn'>Отметить приход без расходный</button>
                                 </NavLink> : ''}
                             <NavLink to='/admin/stock/accepted/resume' className='link'>
                                 <button className='stock_btn'>Отметить приход</button>

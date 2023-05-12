@@ -37,7 +37,7 @@ import { StockResumeAccepted } from "./components/admin/StockResumeAccepted";
 import { BusyaSendProducts } from "./components/admin/BusyaSendProducts";
 
 axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
-// axios.defaults.baseURL = 'https://test.vodenoi.shop/v1';
+//axios.defaults.baseURL = 'https://test.vodenoi.shop/v1';
 // axios.defaults.baseURL = 'http://localhost:5000/v1';
 
 function App() {
