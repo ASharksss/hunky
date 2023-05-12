@@ -33,10 +33,12 @@ import { ShippedProducts } from "./components/admin/ShippedProducts";
 import { SendProducts } from "./components/SendProducts";
 import { Notification } from "./components/admin/Notification";
 import { AdminStockAccepted } from "./components/admin/AdminStockAccepted";
-import {StockResumeAccepted} from "./components/admin/StockResumeAccepted";
+import { StockResumeAccepted } from "./components/admin/StockResumeAccepted";
+import { BusyaSendProducts } from "./components/admin/BusyaSendProducts";
 
 axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
-/*axios.defaults.baseURL = 'http://localhost:5000/v1';*/
+// axios.defaults.baseURL = 'https://test.vodenoi.shop/v1';
+// axios.defaults.baseURL = 'http://localhost:5000/v1';
 
 function App() {
   const auth = useSelector(state => state.auth)
@@ -84,6 +86,7 @@ function App() {
               <Route path='/admin/stock/accepted/resume' element={<StockResumeAccepted />} />
               <Route path='/admin/stock/shipped' element={<ShippedProducts />} />
               <Route path='/admin/stock/sendShipped' element={<SendProducts />} />
+              <Route path='/busya/stock/accepted' element={<BusyaSendProducts />} />
               <Route path='/admin/notification' element={<Notification />} />
               <Route path='/admin/stock/accepted' element={<AdminStockAccepted />} />
             </Route>

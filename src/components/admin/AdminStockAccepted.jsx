@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {NavLink} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 export const AdminStockAccepted = () => {
-    const [stockVal, setStockVal] = useState(0)
+    const auth = useSelector(state => state.auth)
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState([])
     const getList = () => {
@@ -32,11 +33,15 @@ export const AdminStockAccepted = () => {
                     <div className="stock_block">
                         <div className="stock_title">
                             <h1>Склад АйМаНи</h1>
+                            {auth.user.name === 'Алсу' ?
+                                <NavLink to='/busya/stock/accepted' className='link'>
+                                    <button className='stock_btn'>Отметить приход (Busya)</button>
+                                </NavLink> : ''}
                             <NavLink to='/admin/stock/accepted/resume' className='link'>
                                 <button className='stock_btn'>Отметить приход</button>
-                                <NavLink to='/admin/stock/shipped' className='link'>
-                                    <button className='stock_btn'>Заказы</button>
-                                </NavLink>
+                            </NavLink>
+                            <NavLink to='/admin/stock/shipped' className='link'>
+                                <button className='stock_btn'>Заказы</button>
                             </NavLink>
                         </div>
                         <div className="stock_list">
