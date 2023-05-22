@@ -69,6 +69,7 @@ export const UserSalary = () => {
                                         <th>Тип</th>
                                         <th>Сделано</th>
                                         <th>Стоимость</th>
+                                        <th>₽/шт</th>
                                         <th>Голография</th>
                                     </tr>
                                 </thead>
@@ -80,6 +81,7 @@ export const UserSalary = () => {
                                             <td data-label="Тип">{item.info}</td>
                                             <td data-label="Сделано">{item.count} шт.</td>
                                             <td data-label="Стоимость">{item.price} ₽</td>
+                                            <td data-label="₽/шт">{parseFloat(parseFloat(item.price) / parseFloat(item.count)).toFixed(2)}</td>
                                             <td>{item.is_holography == true ? <FcLike /> : ''}</td>
                                         </tr>
                                     ))}

@@ -5,6 +5,7 @@ import { requestGetJob, requestAddJob } from '../actions/user';
 export const HomeDetail = () => {
 	const [count, setCount] = useState('')
 	const [defect, setDefect] = useState('')
+	const [loading, setLoading] = useState(false)
 	const [detail, setDetail] = useState('')
 	const [isHolography, setIsHolography] = useState(false)
 
@@ -18,6 +19,7 @@ export const HomeDetail = () => {
 	}, [])
 
 	const handleSubmit = async () => {
+		setLoading(true)
 		const data = {
 			'name': job.name,
 			'type': detail,
@@ -27,9 +29,15 @@ export const HomeDetail = () => {
 		}
 		if (detail) {
 			if (count > 0) {
-				await dispatch(requestAddJob(data))
+				const response = await dispatch(requestAddJob(data))
+				if(response) {
+					setLoading(false)
+				}
 			} else if (defect > 0) {
-				await dispatch(requestAddJob(data))
+				const response = await dispatch(requestAddJob(data))
+				if(response) {
+					setLoading(false)
+				}
 			} else {
 				alert('Поля значений пустые')
 			}
@@ -82,9 +90,11 @@ export const HomeDetail = () => {
 								</div> : ''
 							}
 							<div className="detail_btns">
+								{!loading ? 
 								<button type='submit' className='detail_btn'>
 									Сохранить
-								</button>
+								</button> :
+								<p>Отправка</p> }
 							</div>
 							{error.message ? <p className="error">{error.message}</p> : ''}
 							{error.message ? <p style={{ display: 'flex', flexDirection: 'column' }}>{errorDetails()}</p> : ''}
