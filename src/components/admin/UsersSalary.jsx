@@ -64,9 +64,10 @@ export const UserSalary = () => {
                             <table>
                                 <thead>
                                     <tr>
+                                        <th>Тип</th>
                                         <th>Дата</th>
                                         <th>Продукт</th>
-                                        <th>Тип</th>
+                                        <th>Информация</th>
                                         <th>Сделано</th>
                                         <th>Стоимость</th>
                                         <th>₽/шт</th>
@@ -76,9 +77,10 @@ export const UserSalary = () => {
                                 <tbody>
                                     {data.map(item => (
                                         <tr key={item.id}>
+                                            <td data-label="Тип">{item.type}</td>
                                             <td data-label="Дата">{item.date}</td>
                                             <td data-label="Продукт">{item.product}</td>
-                                            <td data-label="Тип">{item.info}</td>
+                                            <td data-label="Информация">{item.info}</td>
                                             <td data-label="Сделано">{item.count} шт.</td>
                                             <td data-label="Стоимость">{item.price} ₽</td>
                                             <td data-label="₽/шт">{parseFloat(parseFloat(item.price) / parseFloat(item.count)).toFixed(2)}</td>

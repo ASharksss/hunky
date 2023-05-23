@@ -50,8 +50,9 @@ export const History = () => {
             <table>
               <thead>
                 <tr>
-                  <th>Продукт</th>
                   <th>Тип</th>
+                  <th>Продукт</th>
+                  <th>Информация</th>
                   <th>Сделано</th>
                   <th>Брак</th>
                   <th>Дата добавления</th>
@@ -61,8 +62,9 @@ export const History = () => {
                 {filteredData.map(item => {
                   return (
                     <tr key={item.process.id}>
+                      <td data-label="Тип">{item.type}</td>
                       <td data-label="Продукт">{item.process.product}</td>
-                      <td data-label="Тип">{item.info}</td>
+                      <td data-label="Информация">{item.info}</td>
                       <td data-label="Сделано">{item.process.count}</td>
                       <td data-label="Брак">{item.process.defect}</td>
                       <td data-label="Дата добавления">{item.process.date}</td>

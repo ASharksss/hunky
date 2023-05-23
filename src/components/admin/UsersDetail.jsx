@@ -79,8 +79,9 @@ export const UsersDetail = () => {
               <table>
                 <thead>
                 <tr>
-                  <th>Продукт</th>
                   <th>Тип</th>
+                  <th>Продукт</th>
+                  <th>Информация</th>
                   <th>Сделано</th>
                   <th>Голография</th>
                   <th>Дата добавления</th>
@@ -91,8 +92,9 @@ export const UsersDetail = () => {
                 {filteredData.map(item => {
                   return (
                     <tr>
+                      <td data-label="Тип">{item.type}</td>
                       <td data-label="Продукт">{item.process.product}</td>
-                      <td data-label="Тип">{item.info}</td>
+                      <td data-label="Информация">{item.info}</td>
                       <td data-label="Сделано">{item.process.count}</td>
                       <td>{item.process.is_holography == true ? <FcLike /> : ''}</td>
                       <td data-label="Дата добавления">{item.process.date}</td>
