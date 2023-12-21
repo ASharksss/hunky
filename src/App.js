@@ -35,10 +35,11 @@ import { Notification } from "./components/admin/Notification";
 import { AdminStockAccepted } from "./components/admin/AdminStockAccepted";
 import { StockResumeAccepted } from "./components/admin/StockResumeAccepted";
 import { BusyaSendProducts } from "./components/admin/BusyaSendProducts";
+import {AdminAllUserLogs} from "./components/admin/AdminAllUserLogs";
 
-axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
-//axios.defaults.baseURL = 'https://test.vodenoi.shop/v1';
-// axios.defaults.baseURL = 'http://localhost:5000/v1';
+// axios.defaults.baseURL = 'https://rabotyagi-api.vodenoi.shop/v1';
+// axios.defaults.baseURL = 'https://test.vodenoi.shop/v1';
+axios.defaults.baseURL = 'http://localhost:5000/v1';
 
 function App() {
   const auth = useSelector(state => state.auth)
@@ -77,6 +78,7 @@ function App() {
               <Route path='/admin/job/add' element={<AddJob />} />
               <Route path='/admin/product/add' element={<AddProduct />} />
               <Route path='/admin/user/detail/:id' element={<UsersDetail />} />
+              <Route path='/admin/users/details' element={<AdminAllUserLogs />} />
               <Route path='/history/:id' element={<HistoryDetail />} />
               <Route path='/user/salary/:id' element={<UserSalary />} />
               <Route path='/admin/users/add' element={<AddUser />} />

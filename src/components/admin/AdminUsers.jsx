@@ -11,6 +11,9 @@ export const AdminUsers = () => {
         dispatch(requestUserList())
     }, [])
     const user = useSelector(state => state.user.data)
+    const changeClass = (event) => {
+      event.currentTarget.className += ' active'
+    }
     return (
         <div className='admin_users'>
             <div className="container">
@@ -28,6 +31,9 @@ export const AdminUsers = () => {
                                     Отзывы и предложения
                                 </button>
                             </NavLink>
+                            <button className='add_user' onClick={changeClass}>
+                                Тест
+                            </button>
                             {current_user.name === 'Алсу' ?
                                 <NavLink to='/admin/notification' className='users_resume'>
                                     <button className='add_user'>
@@ -47,13 +53,22 @@ export const AdminUsers = () => {
                                 </tr>
                             </thead>
                             <tbody>
+                            {auth.role === 'Администратор' &&
+                            <tr>
+                                <td data-label="Пользователь" colspan="4" style={{textAlign: 'center'}}>Все пользователи</td>
+                                <td data-label="Кнопки">
+                                    <NavLink to={'/admin/users/details'}>
+                                        <button className='user_btn'>Подробнее</button>
+                                    </NavLink>
+                                </td>
+                            </tr>}
                                 {user.map(item => {
                                     return (
                                         item.role !== 'Администратор' && item.role !== 'Зритель' ?
                                             <tr key={item.id}>
                                                 <td data-label="Пользователь">{item.name}</td>
                                                 <td data-label="Логин">{item.username}</td>
-                                                <td data-label="Пароль">{item.job_title}</td>
+                                                <td data-label="Должность">{item.job_title}</td>
                                                 <td data-label="Деятельность">{item.role}</td>
                                                 <td data-label="Кнопки">
                                                     <NavLink to={'/admin/user/detail/' + item.id}

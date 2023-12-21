@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {NavLink} from "react-router-dom";
 import {requestHistory} from '../../actions/admin';
+import {FcLike} from "react-icons/fc";
 
 export const AdminStock = () => {
   const [stockVal, setStockVal] = useState(0)
@@ -149,6 +150,7 @@ export const AdminStock = () => {
                   <tr>
                     <th>Продукт</th>
                     <th>Тип</th>
+                    <th>Голография</th>
                     <th>Количество</th>
                   </tr>
                   </thead>
@@ -159,6 +161,7 @@ export const AdminStock = () => {
                         <tr>
                           <td data-label="Продукт">{item.product}</td>
                           <td data-label="Тип">{item.volume}</td>
+                          <td>{item.is_holography == true ? <FcLike /> : ''}</td>
                           <td data-label="Количество">{item.count}</td>
                         </tr>
                       )
@@ -177,6 +180,7 @@ export const AdminStock = () => {
                   <tr>
                     <th>Продукт</th>
                     <th>Тип</th>
+                    <th>Голография</th>
                     <th>Количество</th>
                   </tr>
                   </thead>
@@ -187,6 +191,7 @@ export const AdminStock = () => {
                         <tr>
                           <td data-label="Продукт">{item.product}</td>
                           <td data-label="Тип">{item.volume}</td>
+                          <td>{item.is_holography == true ? <FcLike /> : ''}</td>
                           <td data-label="Количество">{item.count}</td>
                         </tr>
                       )

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import {FcLike} from "react-icons/fc";
 import axios from "axios";
 
 export const StockResumeAccepted = () => {
@@ -7,6 +8,7 @@ export const StockResumeAccepted = () => {
     const [count, setCount] = useState(0)
     const [loading, setLoading] = useState(true)
     const [pId, setPId] = useState('')
+    const [isHolography, setIsHolography] = useState(false)
     const [products, setProducts] = useState([])
     const getList = () => {
         setLoading(true)
@@ -31,7 +33,8 @@ export const StockResumeAccepted = () => {
             const data = {
                 product: pId.split(',')[0],
                 info: pId.split(',')[1],
-                count: count
+                count: count,
+                holography: isHolography
             }
             axios.post('/stock/add/accepted', data)
                 .then(res => {
@@ -60,13 +63,21 @@ export const StockResumeAccepted = () => {
                             <option hidden>Выберите тип</option>
                             {products.map(item => (
                                 <option key={item.id}
-                                        value={item.product + ',' + item.volume}>{item.product} - {item.volume}</option>
+                                        value={item.product + ',' + item.volume}>{item.product} - {item.volume}, кол-во: {item.count} {item.is_holography === true && "★"}</option>
                             ))}
                         </select>
                         <input type="number" placeholder='Введите количество'
                                onChange={e => setCount(e.target.value)} className='resume_input' required/>
+                        <div style={{display: 'flex'}}>
+                            <input type="checkbox" onChange={() => setIsHolography(prev => !prev)} id="holography"
+                                   name="holography" checked={isHolography}/>
+                            <label htmlFor="holography">Голографический</label>
+                        </div>
                         <div className="link resume_stock_link">
                             <button type='submit' className="resume_stock_submit">Добавить</button>
+                        </div>
+                        <div>
+                            <span>Голографические помечены звездочкой "★"</span>
                         </div>
                     </form>
                 </div>

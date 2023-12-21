@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
+import {NavLink} from "react-router-dom";
+import { FcLike } from 'react-icons/fc'
 import axios from "axios";
 
 export const AdminStockAccepted = () => {
@@ -26,6 +27,37 @@ export const AdminStockAccepted = () => {
     if (loading) {
         return <h2>Loading ...</h2>
     }
+
+    const handleReset = (product_id, name, type, itemCount, id) => {
+        const check = window.confirm(`Вы действительно хотите сделать возврат на покраску ${name} - ${type}?`)
+        if (check) {
+            const count = window.prompt('Введите кол-во')
+            if (parseInt(count) > 0) {
+                if (count > itemCount) {
+                    alert('Значение превышает допустимое')
+                } else {
+                    const data = {
+                        "id": product_id,
+                        "info": type,
+                        "count": count,
+                        'sId': id
+                    }
+                    axios.post('/stock/reset', data)
+                        .then(res => {
+                            alert('Возврат прошел успешно')
+                            window.location.reload()
+                        }).catch(err => {
+                        alert('Ошибка обработки данных')
+                        console.log(err)
+                    })
+                }
+
+            } else {
+                alert("Введите число")
+            }
+        }
+    }
+
     return (
         <div className='adminStock'>
             <div className="container">
@@ -51,6 +83,9 @@ export const AdminStockAccepted = () => {
                                     <th>Продукт</th>
                                     <th>Тип</th>
                                     <th>Количество</th>
+                                    <th>Голография</th>
+                                    {auth.isAuth & auth.role === 'Администратор' ?
+                                        <th>Действия</th> : ''}
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -59,6 +94,14 @@ export const AdminStockAccepted = () => {
                                         <td data-label="Продукт">{item.product}</td>
                                         <td data-label="Тип">{item.volume}</td>
                                         <td data-label="Количество">{item.count}</td>
+                                        <td data-label="Голография">{item.is_holography && <FcLike/>}</td>
+                                        {auth.isAuth & auth.role === 'Администратор' ?
+                                            <td data-label="Действия">
+                                                <button
+                                                    onClick={() => handleReset(item.product_id, item.product, item.volume, item.count, item.id)}
+                                                    className='stock_btn'>Возврат
+                                                </button>
+                                            </td> : ''}
                                     </tr>
                                 ))}
                                 </tbody>

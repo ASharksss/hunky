@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
-import { requestGetJob, requestAddJob, requestGetProcess, requestUpdateProcess } from '../actions/user';
+import { requestGetProcess, requestUpdateProcess } from '../actions/user';
 
 export const HistoryDetail = (props) => {
     const dispatch = useDispatch()

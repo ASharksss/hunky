@@ -36,7 +36,7 @@ export const AdminFooter = () => {
                   <p>Товары</p>
                 </button>
               </NavLink>
-              <NavLink to='/admin/analitic' className='home__btn_link'>
+              <NavLink to='/admin/analytics' className='home__btn_link'>
                 <button className='footer__button'>
                   <CiAlignBottom className='footer_icon' size={35} />
                   <p>Аналитика</p>
