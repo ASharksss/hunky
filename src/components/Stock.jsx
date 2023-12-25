@@ -53,16 +53,14 @@ export const Stock = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredData.map(item => {
-                return (
+              {filteredData.map(item => (item.is_holography === false || item.is_holography === null) ? (
                   <tr>
                     <td data-label="Продукт">{item.product}</td>
                     <td data-label="Продукт">{!item.volume ? '-' : item.volume}</td>
                     <td data-label="Количество">{item.count}</td>
                     <td data-label='Склад'>{item.type}</td>
                   </tr>
-                )
-              })}
+                ) : null)}
             </tbody>
           </table>
         </div>

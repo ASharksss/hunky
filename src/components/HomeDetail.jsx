@@ -84,10 +84,6 @@ export const HomeDetail = () => {
 								placeholder='Количество сделано' />
 							<input type='number' value={defect} onChange={e => setDefect(e.target.value)}
 								placeholder='Количество брак' />
-							<div style={{display: 'flex'}}>
-								<input type="checkbox" onChange={() => setIsHolography(prev => !prev)} id="holography" name="holography" checked={isHolography} />
-								<label for="holography">Голографический</label>
-							</div>
 							<div className="detail_btns">
 								{!loading ? 
 								<button type='submit' className='detail_btn'>

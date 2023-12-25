@@ -60,13 +60,11 @@ export const SendProducts = () => {
                                     setPCount(data.find(x => x.product == e.target.value.split(',')[0] && x.volume == e.target.value.split(',')[1]))
                                 }} className='resume_input' >
                                     <option defaultChecked hidden>Выберите товар</option>
-                                    {data.map(item => {
-                                        return (
-                                            <option key={item.product + item.volume}
+                                    {data.map(item => !item.is_holography ? (
+                                            <option key={`select-${item.product}=${item.volume}`}
                                                 value={item.product + ',' + item.volume}>
                                                 {item.product} - {item.volume}</option>
-                                        )
-                                    })}
+                                        ) : null)}
                                 </select>
                                 {pCount !== undefined ?
                                     <p>На складе: {pCount.count} шт.</p>
@@ -91,13 +89,13 @@ export const SendProducts = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {data.map(item => (
-                                        <tr key={item.id}>
+                                    {data.map((item, index) => !item.is_holography ? (
+                                        <tr key={`table-${index}`}>
                                             <td data-label="Продукт">{item.product}</td>
                                             <td data-label="Тип">{item.volume}</td>
                                             <td data-label="Кол-во">{item.count} шт.</td>
                                         </tr>
-                                    ))}
+                                    ) : null)}
                                 </tbody>
                             </table>
                         </div>}

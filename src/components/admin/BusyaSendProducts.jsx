@@ -93,10 +93,6 @@ export const BusyaSendProducts = () => {
                                 </select>: ''}                          
                                 <input required type="number" placeholder='Введите количество' value={count}
                                     onChange={e => setCount(e.target.value)} className='resume_input' />
-                                <label>
-                                    Голография
-                                    <input type="checkbox" onChange={() => setIsHolography(!isHolography)} value={isHolography} />
-                                </label>
                                 <div className="link resume_stock_link">
                                     <button type='submit' className="resume_stock_submit">Отправить</button>
                                 </div>

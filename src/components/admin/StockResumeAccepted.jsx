@@ -61,23 +61,15 @@ export const StockResumeAccepted = () => {
                         <h2 className='resume_stock_title'>Добавить принятые</h2>
                         <select onChange={e => setPId(e.target.value)} className='resume_input' required>
                             <option hidden>Выберите тип</option>
-                            {products.map(item => (
+                            {products.map(item => !item.is_holography ? (
                                 <option key={item.id}
-                                        value={item.product + ',' + item.volume}>{item.product} - {item.volume}, кол-во: {item.count} {item.is_holography === true && "★"}</option>
-                            ))}
+                                        value={item.product + ',' + item.volume}>{item.product} - {item.volume}, кол-во: {item.count}</option>
+                            ) : null)}
                         </select>
                         <input type="number" placeholder='Введите количество'
                                onChange={e => setCount(e.target.value)} className='resume_input' required/>
-                        <div style={{display: 'flex'}}>
-                            <input type="checkbox" onChange={() => setIsHolography(prev => !prev)} id="holography"
-                                   name="holography" checked={isHolography}/>
-                            <label htmlFor="holography">Голографический</label>
-                        </div>
                         <div className="link resume_stock_link">
                             <button type='submit' className="resume_stock_submit">Добавить</button>
-                        </div>
-                        <div>
-                            <span>Голографические помечены звездочкой "★"</span>
                         </div>
                     </form>
                 </div>

@@ -83,27 +83,25 @@ export const AdminStockAccepted = () => {
                                     <th>Продукт</th>
                                     <th>Тип</th>
                                     <th>Количество</th>
-                                    <th>Голография</th>
                                     {auth.isAuth & auth.role === 'Администратор' ?
                                         <th>Действия</th> : ''}
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {data.map(item => (
+                                {data.map(item => !item.is_holography ? (
                                     <tr>
                                         <td data-label="Продукт">{item.product}</td>
                                         <td data-label="Тип">{item.volume}</td>
                                         <td data-label="Количество">{item.count}</td>
-                                        <td data-label="Голография">{item.is_holography && <FcLike/>}</td>
                                         {auth.isAuth & auth.role === 'Администратор' ?
                                             <td data-label="Действия">
                                                 <button
                                                     onClick={() => handleReset(item.product_id, item.product, item.volume, item.count, item.id)}
                                                     className='stock_btn'>Возврат
                                                 </button>
-                                            </td> : ''}
+                                            </td> : null}
                                     </tr>
-                                ))}
+                                ) : null)}
                                 </tbody>
                             </table>
                         </div>

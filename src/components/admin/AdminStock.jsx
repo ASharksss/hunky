@@ -150,18 +150,16 @@ export const AdminStock = () => {
                   <tr>
                     <th>Продукт</th>
                     <th>Тип</th>
-                    <th>Голография</th>
                     <th>Количество</th>
                   </tr>
                   </thead>
                   <tbody>
                   {data.map(item => {
-                    if (item.type_id == 3) {
+                    if (item.type_id === 3 && !item.is_holography) {
                       return (
                         <tr>
                           <td data-label="Продукт">{item.product}</td>
                           <td data-label="Тип">{item.volume}</td>
-                          <td>{item.is_holography == true ? <FcLike /> : ''}</td>
                           <td data-label="Количество">{item.count}</td>
                         </tr>
                       )
@@ -170,7 +168,7 @@ export const AdminStock = () => {
                   </tbody>
                 </table>
               </div>
-            </div> : ''}
+            </div> : null}
           {stockVal == '0' | stockVal == '4' ?
             <div className="stock_block">
               <h1>Собранные</h1>
@@ -180,18 +178,16 @@ export const AdminStock = () => {
                   <tr>
                     <th>Продукт</th>
                     <th>Тип</th>
-                    <th>Голография</th>
                     <th>Количество</th>
                   </tr>
                   </thead>
                   <tbody>
                   {data.map(item => {
-                    if (item.type_id == 4) {
+                    if (item.type_id === 4 && !item.is_holography) {
                       return (
                         <tr>
                           <td data-label="Продукт">{item.product}</td>
                           <td data-label="Тип">{item.volume}</td>
-                          <td>{item.is_holography == true ? <FcLike /> : ''}</td>
                           <td data-label="Количество">{item.count}</td>
                         </tr>
                       )
@@ -200,7 +196,7 @@ export const AdminStock = () => {
                   </tbody>
                 </table>
               </div>
-            </div> : ''}
+            </div> : null}
         </div>
       </div>
     </div>
